@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMK Fashion — Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --chalk-white: #f7f5f0;
+      --pure-ivory: #fefaf5;
+      --charcoal-soft: #1e1c1a;
+      --slate-mist: #2c2a28;
+      --taupe-dust: #8e7c6f;
+      --gold-whisper: #c9b28b;
+      --pearl-glow: #e2dcd3;
+      --soft-black: #12100e;
+      --fade-grey: #d9d2c5;
+      --success-green: #2d6a4f;
+      --warning-orange: #e76f51;
+      --danger-red: #bc4742;
+      --info-blue: #2a6f8f;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--pearl-glow);
+      color: var(--charcoal-soft);
+      overflow-x: hidden;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, var(--charcoal-soft) 0%, var(--slate-mist) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .login-box {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .login-box .login-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      color: var(--charcoal-soft);
+      margin-bottom: 0.3rem;
+    }
+
+    .login-box p {
+      font-size: 0.75rem;
+      color: var(--taupe-dust);
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--fade-grey);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .login-box input:focus {
+      border-color: var(--gold-whisper);
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--charcoal-soft);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .login-box button:hover {
+      background: var(--slate-mist);
+    }
+
+    .login-error {
+      color: var(--danger-red);
+      font-size: 0.8rem;
+      margin-top: 0.8rem;
+      display: none;
+    }
+
+
+    /* Admin Container */
+    .admin-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(180deg, var(--charcoal-soft) 0%, var(--slate-mist) 100%);
+      color: var(--pearl-glow);
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .sidebar-header {
+      padding: 2rem 1.5rem;
+      border-bottom: 1px solid rgba(201, 178, 139, 0.2);
+      text-align: center;
+    }
+
+    .sidebar-logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 3px;
+      color: var(--gold-whisper);
+    }
+
+    .sidebar-logo span {
+      font-size: 0.8rem;
+      display: block;
+      color: var(--taupe-dust);
+      letter-spacing: 2px;
+      margin-top: 0.3rem;
+    }
+
+    .admin-info {
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 178, 139, 0.2);
+    }
+
+    .admin-avatar {
+      width: 70px;
+      height: 70px;
+      background: var(--gold-whisper);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .admin-avatar i {
+      font-size: 2.5rem;
+      color: var(--charcoal-soft);
+    }
+
+    .admin-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .admin-info p {
+      font-size: 0.7rem;
+      color: var(--taupe-dust);
+      letter-spacing: 1px;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      padding: 1.5rem 0;
+    }
+
+    .nav-item {
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--pearl-glow);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .nav-item i {
+      width: 24px;
+      font-size: 1.1rem;
+    }
+
+    .nav-item span {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .nav-item:hover {
+      background: rgba(201, 178, 139, 0.1);
+      border-left-color: var(--gold-whisper);
+    }
+
+    .nav-item.active {
+      background: rgba(201, 178, 139, 0.15);
+      border-left-color: var(--gold-whisper);
+      color: var(--gold-whisper);
+    }
+
+    .nav-divider {
+      height: 1px;
+      background: rgba(201, 178, 139, 0.1);
+      margin: 1rem 1.5rem;
+    }
+
+    .nav-title {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--taupe-dust);
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 1.5rem 2rem;
+    }
+
+    /* Top Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--fade-grey);
+    }
+
+    .page-title h1 {
+      font-size: 1.8rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--charcoal-soft);
+    }
+
+    .page-title p {
+      font-size: 0.8rem;
+      color: var(--taupe-dust);
+      margin-top: 0.3rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .notification-icon {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+
+    .notification-icon:hover {
+      background: var(--pearl-glow);
+    }
+
+    .notification-icon i {
+      font-size: 1.3rem;
+      color: var(--taupe-dust);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--gold-whisper);
+      color: var(--charcoal-soft);
+      font-size: 0.6rem;
+      padding: 2px 5px;
+      border-radius: 10px;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--fade-grey);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-color: var(--gold-whisper);
+    }
+
+    .stat-info h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--charcoal-soft);
+    }
+
+    .stat-info p {
+      font-size: 0.75rem;
+      color: var(--taupe-dust);
+      letter-spacing: 1px;
+      margin-top: 0.3rem;
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--pearl-glow);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .stat-icon i {
+      font-size: 1.5rem;
+      color: var(--gold-whisper);
+    }
+
+    /* Section Content */
+    .section-content {
+      display: none;
+    }
+
+    .section-content.active {
+      display: block;
+    }
+
+    /* Table Styles */
+    .data-table {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      border: 1px solid var(--fade-grey);
+      overflow-x: auto;
+    }
+
+    .data-table h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 1rem 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--taupe-dust);
+      border-bottom: 1px solid var(--fade-grey);
+    }
+
+    td {
+      padding: 1rem 0.5rem;
+      font-size: 0.85rem;
+      border-bottom: 1px solid var(--fade-grey);
+    }
+
+    .status {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .status.active {
+      background: rgba(45, 106, 79, 0.1);
+      color: var(--success-green);
+    }
+
+    .status.inactive {
+      background: rgba(188, 71, 66, 0.1);
+      color: var(--danger-red);
+    }
+
+    /* Products Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card-admin {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--fade-grey);
+      transition: all 0.3s;
+    }
+
+    .product-card-admin:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-whisper);
+    }
+
+    .product-image-admin {
+      height: 200px;
+      background: var(--pearl-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image-admin i {
+      font-size: 3rem;
+      color: var(--taupe-dust);
+    }
+
+    .product-info-admin {
+      padding: 1rem;
+    }
+
+    .product-info-admin h4 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      color: var(--gold-whisper);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-price-admin {
+      font-weight: 700;
+      color: var(--charcoal-soft);
+      margin-top: 0.5rem;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      background: white;
+      border: 1px solid var(--fade-grey);
+      border-radius: 25px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--charcoal-soft);
+      color: white;
+      border-color: var(--charcoal-soft);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--fade-grey);
+    }
+
+    .close-modal {
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .notification-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--fade-grey);
+    }
+
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .sidebar {
+        width: 80px;
+      }
+      
+      .sidebar .sidebar-logo span,
+      .sidebar .admin-info h4,
+      .sidebar .admin-info p,
+      .sidebar .nav-item span,
+      .sidebar .nav-title {
+        display: none;
+      }
+      
+      .sidebar .nav-item {
+        justify-content: center;
+        padding: 1rem;
+      }
+      
+      .sidebar .admin-avatar {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .sidebar .admin-avatar i {
+        font-size: 1.5rem;
+      }
+      
+      .main-content {
+        margin-left: 80px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .main-content {
+        padding: 1rem;
+      }
+      
+      .top-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Login Screen -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div class="login-logo">◊ TMK</div>
+    <p>ADMIN PANEL</p>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button id="loginSubmitBtn">LOGIN</button>
+    <div class="login-error" id="loginError">Invalid username or password.</div>
+  </div>
+</div>
+
+<div class="admin-container">
+  
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">◊ TMK<br><span>ADMIN PANEL</span></div>
+    </div>
+    
+    <div class="admin-info">
+      <div class="admin-avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <h4>Taiwo Mayowa Krash</h4>
+      <p>Lead Administrator</p>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-title">MAIN</div>
+      <div class="nav-item active" data-page="dashboard">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>DASHBOARD</span>
+      </div>
+      <div class="nav-item" data-page="orders">
+        <i class="fas fa-shopping-bag"></i>
+        <span>ORDERS</span>
+      </div>
+      <div class="nav-item" data-page="products">
+        <i class="fas fa-tshirt"></i>
+        <span>PRODUCTS</span>
+      </div>
+      <div class="nav-item" data-page="customers">
+        <i class="fas fa-users"></i>
+        <span>CUSTOMERS</span>
+      </div>
+      
+      <div class="nav-divider"></div>
+      
+      <div class="nav-title">MANAGEMENT</div>
+      <div class="nav-item" data-page="collections">
+        <i class="fas fa-tags"></i>
+        <span>COLLECTIONS</span>
+      </div>
+      <div class="nav-item" data-page="analytics">
+        <i class="fas fa-chart-line"></i>
+        <span>ANALYTICS</span>
+      </div>
+      
+      <div class="nav-divider"></div>
+      
+      <div class="nav-title">ACCOUNT</div>
+      <div class="nav-item" data-page="profile">
+        <i class="fas fa-user"></i>
+        <span>PROFILE</span>
+      </div>
+      <div class="nav-item" id="logoutBtn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>LOGOUT</span>
+      </div>
+    </nav>
+  </aside>
+  
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="page-title">
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="pageSubtitle">Welcome back, Taiwo. Here's what's happening with your store today.</p>
+      </div>
+      <div class="header-actions">
+        <div class="notification-icon" id="notificationIcon">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge" id="notificationBadge">3</span>
+        </div>
+        <div class="notification-icon" id="messageIcon">
+          <i class="fas fa-envelope"></i>
+          <span class="notification-badge" id="messageBadge">2</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- DASHBOARD SECTION -->
+    <div id="dashboardSection" class="section-content active">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>$24,580</h3>
+            <p>TOTAL REVENUE</p>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3 id="totalOrders">156</h3>
+            <p>TOTAL ORDERS</p>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3 id="totalCustomers">0</h3>
+            <p>CUSTOMERS</p>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-users"></i>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3 id="totalProducts">0</h3>
+            <p>PRODUCTS</p>
+          </div>
+          <div class="stat-icon">
+            <i class="fas fa-tshirt"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="data-table">
+        <h3>RECENT ORDERS</h3>
+        <table id="recentOrdersTable">
+          <thead>
+            <tr><th>ORDER ID</th><th>CUSTOMER</th><th>PRODUCT</th><th>AMOUNT</th><th>STATUS</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- ORDERS SECTION -->
+    <div id="ordersSection" class="section-content">
+      <div class="data-table">
+        <h3>ALL ORDERS</h3>
+        <table id="allOrdersTable">
+          <thead><tr><th>ORDER ID</th><th>CUSTOMER</th><th>PRODUCT</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- PRODUCTS SECTION -->
+    <div id="productsSection" class="section-content">
+      <div class="filter-bar">
+        <button class="filter-btn active" data-collection="all">ALL</button>
+        <button class="filter-btn" data-collection="mens">MEN'S</button>
+        <button class="filter-btn" data-collection="womens">WOMEN'S</button>
+        <button class="filter-btn" data-collection="accessories">ACCESSORIES</button>
+        <button class="filter-btn" data-collection="watches">WRIST WATCHES</button>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+    
+    <!-- CUSTOMERS SECTION -->
+    <div id="customersSection" class="section-content">
+      <div class="data-table">
+        <h3>REGISTERED CUSTOMERS</h3>
+        <table id="customersTable">
+          <thead><tr><th>ID</th><th>NAME</th><th>EMAIL</th><th>PHONE</th><th>JOIN DATE</th><th>STATUS</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- COLLECTIONS SECTION -->
+    <div id="collectionsSection" class="section-content">
+      <div class="products-grid" id="collectionsGrid"></div>
+    </div>
+    
+    <!-- ANALYTICS SECTION -->
+    <div id="analyticsSection" class="section-content">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-info"><h3>$24,580</h3><p>REVENUE</p></div><div class="stat-icon"><i class="fas fa-chart-line"></i></div></div>
+        <div class="stat-card"><div class="stat-info"><h3 id="analyticsOrders">156</h3><p>ORDERS</p></div><div class="stat-icon"><i class="fas fa-shopping-cart"></i></div></div>
+        <div class="stat-card"><div class="stat-info"><h3 id="analyticsCustomers">0</h3><p>CUSTOMERS</p></div><div class="stat-icon"><i class="fas fa-users"></i></div></div>
+        <div class="stat-card"><div class="stat-info"><h3>12</h3><p>COLLECTIONS</p></div><div class="stat-icon"><i class="fas fa-tags"></i></div></div>
+      </div>
+    </div>
+    
+    <!-- PROFILE SECTION -->
+    <div id="profileSection" class="section-content">
+      <div class="data-table">
+        <h3>ADMIN PROFILE</h3>
+        <table>
+          <tr><td style="width:150px"><strong>Name</strong></td><td>Taiwo Mayowa Krash</td></tr>
+          <tr><td><strong>Email</strong></td><td>taiwo@tmkfashion.com</td></tr>
+          <tr><td><strong>Role</strong></td><td>Lead Administrator</td></tr>
+          <tr><td><strong>Joined</strong></td><td>January 15, 2024</td></tr>
+        </table>
+      </div>
+    </div>
+    
+  </main>
+</div>
+
+<!-- Notification Modal -->
+<div id="notificationModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>Notifications</h4>
+      <span class="close-modal">&times;</span>
+    </div>
+    <div id="notificationList"></div>
+  </div>
+</div>
+
+<!-- Message Modal -->
+<div id="messageModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>Messages</h4>
+      <span class="close-modal">&times;</span>
+    </div>
+    <div id="messageList"></div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJvAldm8oz85fqW0-_p_vN3tBdm2TUh7A",
+    authDomain: "blogs-dd2ff.firebaseapp.com",
+    projectId: "blogs-dd2ff",
+    storageBucket: "blogs-dd2ff.firebasestorage.app",
+    messagingSenderId: "347508262669",
+    appId: "1:347508262669:web:a29edfbd441a7573895244",
+    measurementId: "G-NJY2WN9EGC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ========== ADMIN LOGIN ==========
+  const ADMIN_USERNAME = 'taiwo mayowa krash';
+  const ADMIN_PASSWORD = 'taiwo001';
+
+  document.getElementById('loginSubmitBtn').addEventListener('click', () => {
+    const username = document.getElementById('loginUsername').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+    const errorEl = document.getElementById('loginError');
+
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      initializeDashboard();
+    } else {
+      errorEl.style.display = 'block';
+    }
+  });
+
+  document.getElementById('loginPassword').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('loginSubmitBtn').click();
+  });
+
+  // ========== DATA ==========
+  
+  // Registered Users (Fetch from Firestore - TMK signed up customers)
+  let registeredUsers = [];
+  
+  // Products Data (Fetch from Firestore - Real products from collection)
+  let products = [];
+  
+  // Fallback Products (From your collections.html)
+  const fallbackProducts = [
+    // Women's Collection
+    { id: 1, name: "Silk Pleated Maxi Dress", collection: "womens", price: "$425", category: "Dresses", image: "https://img.kwcdn.com/product/fancy/60759047-ed1a-402f-a793-b2f23c18887f.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 2, name: "Wool Blend Knit Dress", collection: "womens", price: "$295", category: "Dresses", image: "https://img.kwcdn.com/product/fancy/49cc00f6-39fc-41d6-ad36-cb6b98536663.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 3, name: "Silk Asymmetric Blouse", collection: "womens", price: "$245", category: "Tops", image: "https://img.kwcdn.com/product/fancy/594df747-968a-4ceb-ae1c-b13bc0075cd4.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 4, name: "Pleated Midi Skirt", collection: "womens", price: "$195", category: "Bottoms", image: "https://img.kwcdn.com/product/fmket/136bbe7c6cb576f4f27072657405d372.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 5, name: "Sculptural Leather Heels", collection: "womens", price: "$385", category: "Footwear", image: "https://img.kwcdn.com/product/fancy/143bd5d5-c5f1-4061-af7d-3ee7fc569812.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 6, name: "Cashmere Blend Coat", collection: "womens", price: "$595", category: "Outerwear", image: "https://img.kwcdn.com/product/fancy/485af9f0-d513-400b-9916-7b8ef58e9d09.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 7, name: "Full-Grain Leather Tote", collection: "womens", price: "$595", category: "Bags", image: "https://img.kwcdn.com/product/fancy/4dcf1a1c-d093-4f91-9d93-0f6f3ebbcc68.jpg?imageView2/2/w/800/q/70/format/avif" },
+    // Men's Collection
+    { id: 8, name: "Tailored Wool Suit", collection: "mens", price: "$895", category: "Suits", image: "https://img.kwcdn.com/product/fmket/be05208c21c9d78f4b3da7c7b02c80f7.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 9, name: "Cashmere Wool Overcoat", collection: "mens", price: "$695", category: "Outerwear", image: "https://img.kwcdn.com/product/fmket/b5874dfbccba92430e524d0762db79ea.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 10, name: "Italian Leather Oxfords", collection: "mens", price: "$495", category: "Footwear", image: "https://img.kwcdn.com/product/fmket/136bbe7c6cb576f4f27072657405d372.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 11, name: "Linen Button-Up Shirt", collection: "mens", price: "$125", category: "Shirts", image: "https://img.kwcdn.com/product/fancy/594df747-968a-4ceb-ae1c-b13bc0075cd4.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 12, name: "Navy Cashmere Blazer", collection: "mens", price: "$595", category: "Blazers", image: "https://img.kwcdn.com/product/fancy/485af9f0-d513-400b-9916-7b8ef58e9d09.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 13, name: "Tailored Wool Trousers", collection: "mens", price: "$285", category: "Trousers", image: "https://img.kwcdn.com/product/fmket/136bbe7c6cb576f4f27072657405d372.jpg?imageView2/2/w/800/q/70/format/avif" },
+    // Accessories
+    { id: 14, name: "Minimalist Leather Belt", collection: "accessories", price: "$95", category: "Belts", image: "https://img.kwcdn.com/product/fancy/a8eb954e-2084-45eb-92eb-c781f94b6a1e.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 15, name: "Gold-Plated Layered Necklace", collection: "accessories", price: "$185", category: "Jewelry", image: "https://img.kwcdn.com/product/fancy/03e8ae71-c314-4b3e-9718-0b80ea3a6a69.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 16, name: "Silk Jacquard Scarf", collection: "accessories", price: "$125", category: "Scarves", image: "https://img.kwcdn.com/product/fancy/c5de5b6f-cd89-4f1d-ac65-a37594829024.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 17, name: "Aviator Sunglasses", collection: "accessories", price: "$195", category: "Eyewear", image: "https://img.kwcdn.com/product/fancy/299806d3-0799-4f57-8136-a5ff18ce9af5.jpg?imageView2/2/w/800/q/70/format/avif" },
+    // Wrist Watches
+    { id: 18, name: "Minimalist Automatic Watch", collection: "watches", price: "$1,250", category: "Watches", image: "https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 19, name: "Chronograph Stainless Steel", collection: "watches", price: "$890", category: "Watches", image: "https://img.kwcdn.com/product/fancy/92d1443f-1a31-4762-8f5b-7025bbee5d87.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 20, name: "Ceramic Link Bracelet Watch", collection: "watches", price: "$1,450", category: "Watches", image: "https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif" },
+    { id: 21, name: "Leather Strap Dress Watch", collection: "watches", price: "$695", category: "Watches", image: "https://img.kwcdn.com/product/fancy/92d1443f-1a31-4762-8f5b-7025bbee5d87.jpg?imageView2/2/w/800/q/70/format/avif" }
+  ];
+  
+  // Orders Data (will be populated from Firestore)
+  let orders = [];
+
+  // Fetch orders from Firestore
+  async function fetchOrdersFromFirestore() {
+    try {
+      const ordersRef = collection(db, "orders");
+      const q = query(ordersRef, orderBy("orderDate", "desc"));
+      const querySnapshot = await getDocs(q);
+
+      orders = [];
+      querySnapshot.forEach((doc) => {
+        const orderData = doc.data();
+        orders.push({
+          id: orderData.orderId,
+          customer: orderData.customerName,
+          product: orderData.items && orderData.items.length > 0 ?
+            (orderData.items.length > 1 ?
+              `${orderData.items[0].name || 'Product'} + ${orderData.items.length - 1} more item(s)` :
+              (orderData.items[0].name || 'Product')) :
+            'No items',
+          amount: `$${orderData.total.toFixed(2)}`,
+          status: orderData.status.charAt(0).toUpperCase() + orderData.status.slice(1),
+          date: orderData.orderDate ? new Date(orderData.orderDate.toDate()).toLocaleDateString() : 'N/A',
+          items: orderData.items,
+          total: orderData.total,
+          customerEmail: orderData.customerEmail,
+          orderDocId: doc.id
+        });
+      });
+
+      console.log(`Fetched ${orders.length} orders from Firestore`);
+      updateOrderStats();
+      displayRecentOrders();
+      displayAllOrders();
+      return true;
+
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      alert("Failed to load orders: " + error.message);
+      return false;
+    }
+  }
+
+  function updateOrderStats() {
+    document.getElementById('totalOrders').innerText = orders.length;
+    document.getElementById('analyticsOrders').innerText = orders.length;
+  }
+  
+  // Notifications
+  let notifications = [
+    { id: 1, text: "New order #TMK-006 from Olivia Martinez", time: "5 minutes ago" },
+    { id: 2, text: "New customer registered: Ethan Williams", time: "1 hour ago" },
+    { id: 3, text: "Order #TMK-002 marked as shipped", time: "3 hours ago" }
+  ];
+  
+  // Messages
+  let messages = [
+    { id: 1, from: "Customer Support", text: "Need help with order #TMK-003", time: "2 hours ago" },
+    { id: 2, from: "James Wilson", text: "Question about return policy", time: "Yesterday" }
+  ];
+  
+
+  
+  function updateStats() {
+    document.getElementById('totalCustomers').innerText = registeredUsers.length;
+    document.getElementById('totalProducts').innerText = products.length;
+    document.getElementById('totalOrders').innerText = orders.length;
+    document.getElementById('analyticsCustomers').innerText = registeredUsers.length;
+    document.getElementById('analyticsOrders').innerText = orders.length;
+  }
+  
+  function displayRecentOrders() {
+    const tbody = document.querySelector('#recentOrdersTable tbody');
+    const recentOrders = orders.slice(0, 5);
+
+    tbody.innerHTML = recentOrders.map(order => {
+      const statusColor = getStatusColor(order.status);
+      return `
+        <tr>
+          <td>${order.id}</td>
+          <td>${order.customer}</td>
+          <td>${order.product}</td>
+          <td>${order.amount}</td>
+          <td>
+            <span class="status" style="background:${statusColor.background};color:${statusColor.color}">
+              ${order.status}
+            </span>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+  
+  function displayAllOrders() {
+    const tbody = document.querySelector('#allOrdersTable tbody');
+
+    tbody.innerHTML = orders.map(order => {
+      const statusColor = getStatusColor(order.status);
+      return `
+        <tr>
+          <td>${order.id}</td>
+          <td>${order.customer}</td>
+          <td>${order.product}</td>
+          <td>${order.amount}</td>
+          <td>
+            <span class="status" style="background:${statusColor.background};color:${statusColor.color}">
+              ${order.status}
+            </span>
+          </td>
+          <td>${order.date}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function getStatusColor(status) {
+    switch (status.toLowerCase()) {
+      case 'delivered':
+        return { background: 'rgba(45,106,79,0.1)', color: '#2d6a4f' };
+      case 'shipped':
+        return { background: 'rgba(13,110,253,0.1)', color: '#0d6efd' };
+      case 'processing':
+        return { background: 'rgba(255,193,7,0.1)', color: '#ffc107' };
+      case 'pending':
+        return { background: 'rgba(108,117,125,0.1)', color: '#6c757d' };
+      case 'cancelled':
+        return { background: 'rgba(220,53,69,0.1)', color: '#dc3545' };
+      default:
+        return { background: 'rgba(108,117,125,0.1)', color: '#6c757d' };
+    }
+  }
+  
+  function displayCustomers() {
+    const tbody = document.querySelector('#customersTable tbody');
+    
+    tbody.innerHTML = registeredUsers.map(user => `
+      <tr>
+        <td>#${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.phone}</td>
+        <td>${user.joinDate}</td>
+        <td>
+          <span class="status ${user.status}">
+            ${user.status.toUpperCase()}
+          </span>
+        </td>
+      </tr>
+    `).join('');
+  }
+  
+  function displayProducts(filter = 'all') {
+    const grid = document.getElementById('productsGrid');
+    let filtered = products;
+
+    if (filter !== 'all') {
+      filtered = products.filter(p => p.collection === filter);
+    }
+
+    grid.innerHTML = filtered.map(product => `
+      <div class="product-card-admin">
+        <div class="product-image-admin">
+          <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+        </div>
+        <div class="product-info-admin">
+          <h4>${product.name}</h4>
+          <div class="product-category">${product.category}</div>
+          <div class="product-price-admin">${product.price}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+
+  
+  function displayCollections() {
+    const collections = [
+      {
+        name: "MEN'S COLLECTION",
+        count: products.filter(p => p.collection === 'mens').length,
+        icon: "fa-tshirt",
+        sampleImage: products.find(p => p.collection === 'mens')?.image || "https://img.kwcdn.com/product/fmket/be05208c21c9d78f4b3da7c7b02c80f7.jpg?imageView2/2/w/800/q/70/format/avif"
+      },
+      {
+        name: "WOMEN'S COLLECTION",
+        count: products.filter(p => p.collection === 'womens').length,
+        icon: "fa-female",
+        sampleImage: products.find(p => p.collection === 'womens')?.image || "https://img.kwcdn.com/product/fancy/60759047-ed1a-402f-a793-b2f23c18887f.jpg?imageView2/2/w/800/q/70/format/avif"
+      },
+      {
+        name: "ACCESSORIES",
+        count: products.filter(p => p.collection === 'accessories').length,
+        icon: "fa-gem",
+        sampleImage: products.find(p => p.collection === 'accessories')?.image || "https://img.kwcdn.com/product/fancy/a8eb954e-2084-45eb-92eb-c781f94b6a1e.jpg?imageView2/2/w/800/q/70/format/avif"
+      },
+      {
+        name: "WRIST WATCHES",
+        count: products.filter(p => p.collection === 'watches').length,
+        icon: "fa-clock",
+        sampleImage: products.find(p => p.collection === 'watches')?.image || "https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif"
+      }
+    ];
+
+    const grid = document.getElementById('collectionsGrid');
+    const collectionName = col => col.name.toLowerCase().replaceAll("'s", "").trim();
+
+    grid.innerHTML = collections.map(col => `
+      <div class="product-card-admin" style="cursor:pointer" data-collection="${collectionName(col)}">
+        <div class="product-image-admin">
+          <img src="${col.sampleImage}" alt="${col.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+        </div>
+        <div class="product-info-admin">
+          <h4>${col.name}</h4>
+          <div class="product-category">${col.count} Products</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Add event listeners to collection cards
+    document.querySelectorAll('.product-card-admin').forEach(card => {
+      card.addEventListener('click', () => {
+        filterProductsByCollection(card.dataset.collection);
+      });
+    });
+  }
+  
+  window.filterProductsByCollection = function(collection) {
+    // Switch to products section and filter
+    document.querySelectorAll('.nav-item')
+      .forEach(item => item.classList.remove('active'));
+    
+    document.querySelectorAll('.section-content')
+      .forEach(section => section.classList.remove('active'));
+    
+    document.getElementById('productsSection').classList.add('active');
+    document.getElementById('pageTitle').innerText = 'PRODUCTS';
+    document.getElementById('pageSubtitle').innerText = 'Manage your product catalog';
+    
+    // Update active filter button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+      
+      if (btn.getAttribute('data-collection') === collection) {
+        btn.classList.add('active');
+      }
+    });
+    
+    displayProducts(collection);
+  };
+  
+  function updateNotificationBadges() {
+    document.getElementById('notificationBadge').innerText = notifications.length;
+    document.getElementById('messageBadge').innerText = messages.length;
+  }
+  
+  function showNotifications() {
+    const modal = document.getElementById('notificationModal');
+    const list = document.getElementById('notificationList');
+    
+    list.innerHTML = notifications.map(n => `
+      <div class="notification-item">
+        <strong>${n.text}</strong><br/>
+        <small style="color: var(--taupe-dust)">
+          ${n.time}
+        </small>
+      </div>
+    `).join('');
+    
+    modal.classList.add('active');
+  }
+  
+  function showMessages() {
+    const modal = document.getElementById('messageModal');
+    const list = document.getElementById('messageList');
+    
+    list.innerHTML = messages.map(m => `
+      <div class="notification-item">
+        <strong>From: ${m.from}</strong><br/>
+        <span>${m.text}</span><br/>
+        <small style="color: var(--taupe-dust)">
+          ${m.time}
+        </small>
+      </div>
+    `).join('');
+    
+    modal.classList.add('active');
+  }
+  
+  // ========== PAGE NAVIGATION ==========
+  function switchPage(page) {
+    document.querySelectorAll('.section-content').forEach(section => {
+      section.classList.remove('active');
+    });
+    
+    const titles = {
+      dashboard: { title: 'Dashboard', subtitle: 'Welcome back, Taiwo. Here\'s what\'s happening with your store today.' },
+      orders: { title: 'ORDERS', subtitle: 'View and manage all customer orders.' },
+      products: { title: 'PRODUCTS', subtitle: 'Manage your product catalog by collection.' },
+      customers: { title: 'CUSTOMERS', subtitle: 'View all registered customers.' },
+      collections: { title: 'COLLECTIONS', subtitle: 'Browse products by collection.' },
+      analytics: { title: 'ANALYTICS', subtitle: 'Store performance metrics.' },
+      profile: { title: 'PROFILE', subtitle: 'Your account information.' }
+    };
+    
+    document.getElementById(`${page}Section`).classList.add('active');
+    document.getElementById('pageTitle').innerText = titles[page].title;
+    document.getElementById('pageSubtitle').innerText = titles[page].subtitle;
+    
+    // Refresh data when switching to certain pages
+    if (page === 'customers') displayCustomers();
+    if (page === 'products') displayProducts('all');
+    if (page === 'collections') displayCollections();
+    if (page === 'orders') displayAllOrders();
+  }
+  
+  // ========== EVENT LISTENERS ==========
+  document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+      item.classList.add('active');
+      switchPage(item.getAttribute('data-page'));
+    });
+  });
+  
+  document.getElementById('notificationIcon').addEventListener('click', showNotifications);
+  document.getElementById('messageIcon').addEventListener('click', showMessages);
+  
+  document.querySelectorAll('.close-modal').forEach(close => {
+    close.addEventListener('click', () => {
+      document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
+    });
+  });
+  
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      displayProducts(btn.getAttribute('data-collection'));
+    });
+  });
+  
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    if (confirm('Are you sure you want to logout?')) {
+      alert('Logged out successfully!');
+    }
+  });
+
+  // ========== FETCH USERS FROM FIRESTORE ==========
+  async function fetchUsersFromFirestore() {
+    try {
+      const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(q);
+      
+      registeredUsers = [];
+      snapshot.forEach((doc, index) => {
+        const userData = doc.data();
+        registeredUsers.push({
+          id: index + 1,
+          uid: doc.id,
+          name: `${userData.firstName || ""} ${userData.lastName || ""}`.trim() || "Unknown User",
+          email: userData.email || "N/A",
+          phone: userData.phone || "N/A",
+          joinDate: userData.createdAt ? new Date(userData.createdAt.toDate()).toLocaleDateString() : "N/A",
+          status: "active"
+        });
+      });
+      
+      console.log("✅ Loaded users from Firestore:", registeredUsers.length);
+      return true;
+    } catch (error) {
+      console.error("❌ Error fetching users:", error.message);
+      console.error("Error code:", error.code);
+      alert(`Failed to load users: ${error.message}`);
+      return false;
+    }
+  }
+  
+  async function fetchProductsFromFirestore() {
+    try {
+      const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(q);
+      
+      // Check if products collection has data
+      if (snapshot.empty) {
+        console.warn("⚠️ No products in Firestore, using fallback products");
+        products = fallbackProducts;
+        return true;
+      }
+      
+      products = [];
+      snapshot.forEach((doc, index) => {
+        const productData = doc.data();
+        products.push({
+          id: index + 1,
+          docId: doc.id,
+          name: productData.name || "Unknown Product",
+          collection: productData.collection || "accessories",
+          price: productData.price ? `$${productData.price}` : "$0",
+          category: productData.category || "General",
+          image: productData.image || "product",
+          description: productData.description || "",
+          inStock: productData.inStock !== false
+        });
+      });
+      
+      console.log("✅ Loaded products from Firestore:", products.length);
+      return true;
+    } catch (error) {
+      console.error("❌ Error fetching products:", error.message);
+      console.warn("⚠️ Using fallback products from collections");
+      products = fallbackProducts;
+      return true;
+    }
+  }
+  
+  // Initialize Dashboard
+  async function initializeDashboard() {
+    const usersLoaded = await fetchUsersFromFirestore();
+    const productsLoaded = await fetchProductsFromFirestore();
+    const ordersLoaded = await fetchOrdersFromFirestore();
+    
+    if (usersLoaded && productsLoaded && ordersLoaded) {
+      updateStats();
+      // Orders are already displayed by fetchOrdersFromFirestore
+      displayCustomers();
+      displayProducts('all');
+      displayCollections();
+      updateNotificationBadges();
+    } else if (usersLoaded) {
+      // Users loaded but products might be empty
+      updateStats();
+      displayRecentOrders();
+      displayAllOrders();
+      displayCustomers();
+      displayProducts('all');
+      displayCollections();
+      updateNotificationBadges();
+    }
+  }
+  
+  // Dashboard is initialized after login
+  
+  // Close modals by clicking outside
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.classList.remove('active');
+    }
+  }
+</script>
+</body>
+</html>

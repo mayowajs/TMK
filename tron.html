@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMK Fashion — Women's Collection | Dresses, Tops, Shoes & Accessories</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* ===== ORIGINAL CSS (unchanged) ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --chalk-white: #f7f5f0;
+      --pure-ivory: #fefaf5;
+      --charcoal-soft: #1e1c1a;
+      --slate-mist: #2c2a28;
+      --taupe-dust: #8e7c6f;
+      --gold-whisper: #c9b28b;
+      --pearl-glow: #e2dcd3;
+      --soft-black: #12100e;
+      --fade-grey: #d9d2c5;
+      --blush-rose: #f5e6e8;
+      --rose-dust: #e8cfd4;
+      --rose-deep: #d4b5c0;
+      --pink-gold: #e6c5c0;
+    }
+
+    body {
+      background-color: var(--chalk-white);
+      color: var(--charcoal-soft);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .nav-left span,
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 245, 240, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(30, 28, 26, 0.08);
+    }
+
+    .nav-left span {
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--charcoal-soft);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .search-input {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(30, 28, 26, 0.2);
+      border-radius: 20px;
+      background: rgba(247, 245, 240, 0.9);
+      color: var(--charcoal-soft);
+      font-size: 0.85rem;
+      width: 200px;
+      transition: 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold-whisper);
+      background: white;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--slate-mist);
+      transition: 0.2s;
+    }
+
+    .user-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--taupe-dust);
+      padding: 0 0.75rem;
+      white-space: nowrap;
+    }
+
+    .nav-right a:hover,
+    .nav-right a.active {
+      color: var(--taupe-dust);
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--charcoal-soft);
+      transition: 0.2s;
+    }
+
+    .cart-icon:hover {
+      color: var(--taupe-dust);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -10px;
+      right: -12px;
+      background: var(--gold-whisper);
+      color: var(--charcoal-soft);
+      font-size: 0.7rem;
+      font-weight: 600;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+      z-index: 2000;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--fade-grey);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+    }
+
+    .close-cart {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: var(--taupe-dust);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--fade-grey);
+      margin-bottom: 0.5rem;
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      background: var(--pearl-glow);
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .cart-item-price {
+      color: var(--taupe-dust);
+      font-size: 0.85rem;
+    }
+
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .cart-item-quantity button {
+      width: 25px;
+      height: 25px;
+      border: 1px solid var(--fade-grey);
+      background: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .cart-item-quantity span {
+      font-size: 0.85rem;
+    }
+
+    .remove-item {
+      color: var(--taupe-dust);
+      cursor: pointer;
+      font-size: 0.75rem;
+      margin-top: 0.3rem;
+      display: inline-block;
+    }
+
+    .cart-footer {
+      padding: 1.5rem;
+      border-top: 1px solid var(--fade-grey);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--charcoal-soft);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 2rem;
+      color: var(--taupe-dust);
+    }
+
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1999;
+      display: none;
+    }
+
+    .cart-overlay.open {
+      display: block;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--charcoal-soft);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      z-index: 3000;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .collection-hero {
+      background: linear-gradient(135deg, #f8e7ec 0%, #e8cfd4 50%, #d9b8c2 100%);
+      padding: 10rem 5rem 6rem 5rem;
+      text-align: center;
+      position: relative;
+      margin-top: 80px;
+    }
+
+    .collection-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 600;
+      letter-spacing: 6px;
+      color: var(--charcoal-soft);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #6b4e5a;
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-line {
+      width: 100px;
+      height: 3px;
+      background: #b27d8a;
+      margin: 0 auto;
+    }
+
+    .fashion-section {
+      padding: 5rem 5rem 3rem 5rem;
+      background: var(--chalk-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--charcoal-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .title-line {
+      width: 60px;
+      height: 2px;
+      background: var(--gold-whisper);
+      margin: 0.5rem auto;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--taupe-dust);
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+    }
+
+    .fashion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--fade-grey);
+      transition: 0.3s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+      border-color: var(--gold-whisper);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 380px;
+      background: var(--pearl-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.02);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      color: var(--charcoal-soft);
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--taupe-dust);
+      margin-bottom: 0.8rem;
+    }
+
+    .product-description {
+      font-size: 0.85rem;
+      color: #6b6258;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--fade-grey);
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--taupe-dust);
+    }
+
+    .product-color {
+      font-size: 0.75rem;
+      color: #9a8b7a;
+      letter-spacing: 1px;
+    }
+
+    .cart-icon-btn {
+      display: inline-block;
+      width: 150px;
+      padding: 0.7rem 0.5rem;
+      background: transparent;
+      border: none;
+      color: var(--charcoal-soft);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: 0.3s;
+      text-align: center;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 0.8rem;
+      border-radius: 5px;
+    }
+
+    .cart-icon-btn:hover {
+      background: var(--charcoal-soft);
+      color: white;
+      border-radius: 15px;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background: transparent;
+      border: 1px solid var(--charcoal-soft);
+      color: var(--charcoal-soft);
+      text-decoration: none;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: 0.3s;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .shop-btn:hover {
+      background: var(--charcoal-soft);
+      color: white;
+    }
+
+    .footer {
+      background: var(--charcoal-soft);
+      color: #dbd1c4;
+      padding: 3rem 5rem 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer-logo {
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: #bfb29f;
+      text-decoration: none;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-whisper);
+    }
+
+    .footer-line {
+      width: 150px;
+      height: 1px;
+      background: #5e554b;
+      margin: 1rem auto;
+    }
+
+    .footer p {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: #b9ab98;
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-left span {
+        font-size: 1.2rem;
+      }
+
+      .nav-right a {
+        margin-left: 1.2rem;
+        font-size: 0.7rem;
+      }
+
+      .cart-sidebar {
+        width: 100%;
+        right: -100%;
+      }
+
+      .collection-hero {
+        padding: 8rem 2rem 4rem 2rem;
+        margin-top: 70px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .fashion-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .fashion-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 300px;
+      }
+
+      .footer {
+        padding: 2rem 1.5rem;
+      }
+
+      .footer-links {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .product-info h3 {
+        font-size: 1rem;
+      }
+    }
+
+    /* ===== CRAZY SINGLE PRODUCT PAGE STYLES (same color theme, wild details) ===== */
+    .single-product-page {
+      max-width: 1400px;
+      margin: 140px auto 60px;
+      background: linear-gradient(145deg, var(--chalk-white) 0%, #fff6f0 100%);
+      border-radius: 48px 48px 32px 32px;
+      box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+      animation: pageGlow 0.6s ease-out;
+    }
+
+    @keyframes pageGlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.97) translateY(20px);
+        filter: blur(4px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    .single-product-page::before {
+      content: "◊◊◊";
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 5rem;
+      font-weight: 100;
+      color: var(--gold-whisper);
+      opacity: 0.15;
+      font-family: 'Playfair Display', serif;
+      pointer-events: none;
+      letter-spacing: 12px;
+    }
+
+    .single-product-page::after {
+      content: "✨ CRAZY EDITION ✨";
+      position: absolute;
+      bottom: 30px;
+      left: -40px;
+      transform: rotate(-90deg);
+      font-size: 0.8rem;
+      letter-spacing: 6px;
+      background: var(--rose-dust);
+      color: var(--charcoal-soft);
+      padding: 6px 18px;
+      border-radius: 60px;
+      font-weight: bold;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 0;
+      background: var(--chalk-white);
+    }
+
+    .detail-image-area {
+      background: radial-gradient(circle at 30% 20%, #f3eae4, #e0cfc5);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-right: 2px dashed var(--gold-whisper);
+    }
+
+    .detail-image-area img {
+      width: 100%;
+      max-height: 550px;
+      object-fit: cover;
+      border-radius: 32px;
+      box-shadow: 25px 25px 50px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 240, 0.6);
+      transition: all 0.4s;
+      transform: rotate(1deg);
+    }
+
+    .detail-image-area:hover img {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .detail-info-area {
+      padding: 3rem 3.5rem;
+      background: rgba(247, 245, 240, 0.8);
+      backdrop-filter: blur(2px);
+      position: relative;
+    }
+
+    .detail-brand {
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      color: var(--taupe-dust);
+      text-transform: uppercase;
+      border-left: 4px solid var(--gold-whisper);
+      padding-left: 12px;
+      margin-bottom: 1.2rem;
+    }
+
+    .detail-title {
+      font-size: 3rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: var(--charcoal-soft);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #1e1c1a 0%, #5e4b3e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .detail-category {
+      display: inline-block;
+      background: var(--rose-dust);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    .detail-price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--taupe-dust);
+      margin: 1rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .detail-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #aa9b8a;
+    }
+
+    .crazy-badge {
+      background: repeating-linear-gradient(45deg, var(--gold-whisper) 0px, var(--gold-whisper) 5px, #f3e0c2 5px, #f3e0c2 10px);
+      padding: 0.5rem 1rem;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      display: inline-block;
+      margin: 1rem 0;
+    }
+
+    .detail-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #4e443c;
+      margin: 1.5rem 0;
+      border-left: 3px solid var(--pink-gold);
+      padding-left: 1rem;
+      font-style: italic;
+    }
+
+    .detail-colors {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+      align-items: center;
+    }
+
+    .color-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      cursor: default;
+    }
+
+    .add-to-cart-big {
+      background: var(--charcoal-soft);
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 60px;
+      margin-top: 1rem;
+      transition: 0.2s;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .add-to-cart-big:hover {
+      background: #3e3530;
+      transform: scale(1.02);
+      letter-spacing: 6px;
+    }
+
+    .back-to-collection {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid var(--taupe-dust);
+      color: var(--taupe-dust);
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1.8rem;
+      transition: 0.2s;
+    }
+
+    .back-to-collection:hover {
+      background: var(--taupe-dust);
+      color: white;
+      border-color: var(--taupe-dust);
+    }
+
+    @media (max-width: 900px) {
+      .product-detail-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-image-area {
+        border-right: none;
+        border-bottom: 2px dashed var(--gold-whisper);
+      }
+
+      .single-product-page {
+        margin: 110px 1rem 40px;
+      }
+
+      .detail-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="nav">
+    <div class="nav-left">
+      <span>◊ TMK FASHION</span>
+    </div>
+    <div class="nav-right">
+      <a href="./images/index.html">HOME</a>
+        <a href="collections.html" class="active">COLLECTION</a>
+      <a href="#">RUNWAY</a>
+      <a href="#">EDITORIAL</a>
+      <a href="#">MAISON</a>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search products...">
+      <a href="./signinn.html" id="loginLink">LOGIN</a>
+      <span class="user-label" id="userLabel"></span>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Shopping Bag</h3>
+      <i class="fas fa-times close-cart" id="closeCart"></i>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">Your bag is empty</div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">CHECKOUT</button>
+    </div>
+  </div>
+
+  <main id="app-root">
+    <!-- original collection will be injected via JS but we keep static as fallback, but view details will override -->
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">◊ TMK FASHION</div>
+      <div class="footer-links">
+        <a href="#collection">COLLECTION</a>
+        <a href="#">RUNWAY</a>
+        <a href="#">EDITORIAL</a>
+        <a href="#">MAISON</a>
+        <a href="./images/index.html">CONTACT</a>
+      </div>
+      <div class="footer-line"></div>
+      <p>© 2026 TMK FASHION — SCULPTURE · SILENCE · STATEMENT</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDJvAldm8oz85fqW0-_p_vN3tBdm2TUh7A",
+      authDomain: "blogs-dd2ff.firebaseapp.com",
+      projectId: "blogs-dd2ff",
+      storageBucket: "blogs-dd2ff.firebasestorage.app",
+      messagingSenderId: "347508262669",
+      appId: "1:347508262669:web:a29edfbd441a7573895244",
+      measurementId: "G-NJY2WN9EGC"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const IMG_BASE = "https://img.kwcdn.com/product/";
+
+    let currentUser = null;
+
+    // ----- ORIGINAL PRODUCT DATA (preserved)
+    const allProducts = [
+      {
+        name: "SILK PLEATED MAXI DRESS",
+        price: 425,
+        category: "DRESSES",
+        image:
+          IMG_BASE +
+          "fmket/f6b3763823ba7cc56bd4e1ac2710130f.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Ivory / Black",
+        desc:
+          "Fluid silk charmeuse with delicate pleating. Perfect for evening elegance."
+      },
+      {
+        name: "WOOD BLEND KNIT DRESS",
+        price: 295,
+        category: "DRESSES",
+        image:
+          IMG_BASE +
+          "fmket/b12cbcc6d22cd175e926490842db9ee3.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Charcoal / Cream",
+        desc:
+          "Sculptural knitwear with modern architecture. Comfort meets sophistication."
+      },
+      {
+        name: "EMBROIDERED EVENING GOWN",
+        price: 895,
+        category: "DRESSES",
+        image:
+          IMG_BASE +
+          "fancy/2eca5da5-27b0-486b-bd26-b19353bf827a.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Midnight Blue",
+        desc:
+          "Hand-embroidered details with flowing silhouette. Red carpet ready."
+      },
+      {
+        name: "LINEN MIDI DRESS",
+        price: 245,
+        category: "DRESSES",
+        image:
+          IMG_BASE +
+          "fancy/a432bfb9-62d1-4631-9e7d-e0f16d84d343.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Natural / Sage",
+        desc:
+          "Breathable European linen with relaxed fit. Effortless daywear."
+      },
+      {
+        name: "SILK ASYMMETRIC BLOUSE",
+        price: 245,
+        category: "TOPS",
+        image:
+          IMG_BASE +
+          "fancy/92322138-c9d0-4230-9000-0eb685dff3f0.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Champagne / Ivory",
+        desc:
+          "Luxurious silk with architectural draping. Statement piece."
+      },
+      {
+        name: "CASHMERE CREWNECK SWEATER",
+        price: 275,
+        category: "TOPS",
+        image:
+          IMG_BASE +
+          "fancy/8a3b2ca4-74a3-4035-b13c-53e6a1059f2e.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Heather Grey / Camel",
+        desc: "Ultra-soft Mongolian cashmere. Timeless essential."
+      },
+      {
+        name: "CLASSIC COTTON BUTTON-UP",
+        price: 165,
+        category: "TOPS",
+        image:
+          IMG_BASE +
+          "fancy/13072aa9-d713-4833-aebf-67ba6e19d276.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "White / Blue Stripe",
+        desc: "Egyptian cotton tailored fit."
+      },
+      {
+        name: "WOOL BLEND TURTLENECK",
+        price: 195,
+        category: "TOPS",
+        image:
+          IMG_BASE +
+          "fancy/b63437da-687f-4aff-80d9-31e7f0c1ecfc.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Burgundy",
+        desc: "Merino wool blend sleek silhouette."
+      },
+      {
+        name: "TAILORED WOOL TROUSERS",
+        price: 325,
+        category: "TROUSERS",
+        image:
+          IMG_BASE +
+          "fancy/ded5dd40-c2d3-4636-9a71-eebe3659269a.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Charcoal / Navy",
+        desc: "Italian wool precision tailoring."
+      },
+      {
+        name: "PLEATED MIDI SKIRT",
+        price: 195,
+        category: "SKIRTS",
+        image:
+          IMG_BASE +
+          "fancy/93197c8d-8474-4b37-8dc0-c50db796ac59.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Taupe",
+        desc: "Flowing pleats with high waist."
+      },
+      {
+        name: "LINEN WIDE LEG PANTS",
+        price: 245,
+        category: "TROUSERS",
+        image:
+          IMG_BASE +
+          "fancy/d58d20bf-48bf-4bb5-80c3-04cf4f3899ab.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Sand / Olive",
+        desc: "Breathable linen relaxed silhouette."
+      },
+      {
+        name: "LEATHER A-LINE SKIRT",
+        price: 425,
+        category: "SKIRTS",
+        image:
+          IMG_BASE +
+          "fancy/00f62454-6511-49af-b86e-caf2df3e5bc4.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Cognac",
+        desc: "Buttery lambskin leather."
+      },
+      {
+        name: "SCULPTURAL LEATHER HEELS",
+        price: 385,
+        category: "HEELS",
+        image:
+          IMG_BASE +
+          "fancy/94e90c69-53a5-4380-aea9-755911a119b0.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Nude",
+        desc: "Architectural heel design."
+      },
+      {
+        name: "SLIM FIT LEATHER BOOTS",
+        price: 495,
+        category: "BOOTS",
+        image:
+          IMG_BASE +
+          "Fancyalgo/VirtualModelMatting/d105b29a162dd5c01b5c0582ff38f1c4.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Chestnut",
+        desc: "Sleek silhouette with stacked heel."
+      },
+      {
+        name: "MODERN LEATHER LOAFERS",
+        price: 295,
+        category: "FLATS",
+        image:
+          IMG_BASE +
+          "fancy/market/5f49c2eb0de6afa52e4c0fd341d1b36c_aLD0r9T5FbNUR.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Burgundy",
+        desc: "Chunky sole meets classic loafer."
+      },
+      {
+        name: "STRAPPY LEATHER SANDALS",
+        price: 225,
+        category: "SANDALS",
+        image:
+          IMG_BASE +
+          "fancy/03439462-3036-4335-bd7b-dc81ac749c49.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Tan / Black",
+        desc: "Minimalist straps with cushioned insole."
+      },
+      {
+        name: "FULL-GRAIN LEATHER TOTE",
+        price: 595,
+        category: "BAGS",
+        image:
+          IMG_BASE +
+          "fancy/dfa8d622-6af8-4632-9597-6baa651ce79e.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Tan",
+        desc: "Spacious tote minimal hardware."
+      },
+      {
+        name: "MINIMALIST LEATHER BELT",
+        price: 125,
+        category: "BELTS",
+        image:
+          IMG_BASE +
+          "fancy/faf20c58-0d51-4e84-9f9a-a4caea22f91b.jpg?imageView2/2/w/800/q/70/format/avif",
+        color: "Black / Brown",
+        desc: "Italian leather gold-toned buckle."
+      },
+      {
+        name: "GOLD-PLATED LAYERED NECKLACE",
+        price: 185,
+        category: "JEWELRY",
+        image:
+          IMG_BASE +
+          "open/272f21dd32e2493584a252a298bb3c45-goods.jpeg?imageView2/2/w/800/q/70/format/avif",
+        color: "Gold / Silver",
+        desc: "Layered chains everyday elegance."
+      },
+      {
+        name: "SILK JACQUARD SCARF",
+        price: 125,
+        category: "SCARVES",
+        image:
+          IMG_BASE +
+          "open/eab1df9cdf9147c7bd72cebeaa104a12-goods.jpeg?imageView2/2/w/800/q/70/format/avif",
+        color: "Multicolor",
+        desc: "Hand-rolled edges artisanal print."
+      }
+    ];
+
+    // helper
+    function buildSectionHtml(sectionTitle, products) {
+      return `
+      <section class="fashion-section">
+        <div class="section-header">
+          <h2 class="section-title">${sectionTitle}</h2>
+          <div class="title-line"></div>
+          <p class="section-subtitle">Luxury essentials</p>
+        </div>
+        <div class="fashion-grid">
+          ${products
+          .map(
+            (product) => `
+                <div class="product-card">
+                  <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                  </div>
+                  <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <span class="product-category">${product.category}</span>
+                    <p class="product-description">
+                      ${product.desc.substring(0, 80)}...
+                    </p>
+                    <div class="product-details">
+                      <span class="product-price">$${product.price}</span>
+                      <span class="product-color">${product.color}</span>
+                    </div>
+                    <button
+                      class="cart-icon-btn"
+                      data-product='${JSON.stringify(product)}'
+                    >
+                      🛒 ADD TO CART
+                    </button>
+                    <a
+                      href="#"
+                      class="shop-btn"
+                      data-view-details='${JSON.stringify(product)}'
+                    >
+                      VIEW DETAILS
+                    </a>
+                  </div>
+                </div>`
+          )
+          .join("")}
+        </div>
+      </section>`;
+    }
+
+    function renderOriginalCollection() {
+      const sections = [
+        "DRESSES",
+        "TOPS & BLOUSES",
+        "TROUSERS & BOTTOMS",
+        "SHOES & FOOTWEAR",
+        "ACCESSORIES",
+        "WRIST WATCHES",
+        "OUTERWEAR"
+      ];
+
+      let html = `
+      <main class="collection-page">
+        <section class="collection-hero">
+          <h1 class="hero-title">WOMEN'S COLLECTION</h1>
+          <p class="hero-subtitle">
+            Timeless elegance · Modern silhouettes · Artisanal craftsmanship
+          </p>
+          <div class="hero-line"></div>
+        </section>`;
+
+      let startIndex = 0;
+
+      sections.forEach((sectionTitle) => {
+        const sectionProducts = allProducts.slice(startIndex, startIndex + 4);
+        startIndex += 4;
+        html += buildSectionHtml(sectionTitle, sectionProducts);
+      });
+
+      html += `</main>`;
+
+      document.getElementById("app-root").innerHTML = html;
+      attachOriginalEventListeners();
+    }
+
+    function renderSearchResults(filteredProducts) {
+      if (filteredProducts.length === 0) {
+        const html = `
+        <main class="collection-page">
+          <section class="collection-hero">
+            <h1 class="hero-title">SEARCH RESULTS</h1>
+            <p class="hero-subtitle">No products found</p>
+            <div class="hero-line"></div>
+          </section>
+        </main>`;
+        document.getElementById("app-root").innerHTML = html;
+        return;
+      }
+
+      // Group products by category
+      const grouped = filteredProducts.reduce((acc, product) => {
+        if (!acc[product.category]) {
+          acc[product.category] = [];
+        }
+        acc[product.category].push(product);
+        return acc;
+      }, {});
+
+      let html = `
+      <main class="collection-page">
+        <section class="collection-hero">
+          <h1 class="hero-title">SEARCH RESULTS</h1>
+          <p class="hero-subtitle">
+            ${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''} found
+          </p>
+          <div class="hero-line"></div>
+        </section>`;
+
+      // Build sections for each category with products
+      Object.keys(grouped).forEach(category => {
+        const products = grouped[category];
+        html += buildSectionHtml(category, products);
+      });
+
+      html += `</main>`;
+
+      document.getElementById("app-root").innerHTML = html;
+      attachOriginalEventListeners();
+    }
+
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      if (query === '') {
+        renderOriginalCollection();
+      } else {
+        const filtered = allProducts.filter(product =>
+          product.name.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query) ||
+          product.desc.toLowerCase().includes(query)
+        );
+        renderSearchResults(filtered);
+      }
+    }
+
+    function renderSingleProduct(product) {
+      const colorDots = product.color
+        .split("/")
+        .map((value) => {
+          const normalized = value.trim();
+          const colorStyle =
+            normalized === "Ivory"
+              ? "background:#f3ede2"
+              : normalized === "Black"
+                ? "background:#2b2b2b"
+                : normalized === "Champagne"
+                  ? "background:#e9d6bc"
+                  : normalized === "Gold"
+                    ? "background:#e5c28e"
+                    : "background:#9a8a7a";
+          return `<div class="color-dot" style="${colorStyle}"></div>`;
+        })
+        .join("");
+
+      const crazyHTML = `
+      <div class="single-product-page">
+        <div class="product-detail-layout">
+          <div class="detail-image-area">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          <div class="detail-info-area">
+            <div class="detail-brand">◊ TMK ATELIER ◊</div>
+            <h1 class="detail-title">${product.name}</h1>
+            <div class="detail-category">${product.category}</div>
+            <div class="detail-price">
+              $${product.price}
+              <span>USD</span>
+            </div>
+            <div class="crazy-badge">
+              ✨ LIMITED EDITION SILHOUETTE ✨
+            </div>
+            <div class="detail-description">
+              ${product.desc} — Crafted with obsessive attention to detail,
+              this piece embodies the wild spirit of TMK. Fluid lines meet
+              architectural drama.
+            </div>
+            <div class="detail-colors">
+              <span style="font-weight:600;">Colorways:</span>
+              ${colorDots}
+            </div>
+            <button class="add-to-cart-big" id="bigAddCartBtn">
+              <i class="fas fa-shopping-bag"></i>
+              ADD TO BAG — $${product.price}
+            </button>
+            <a href="#" class="back-to-collection" id="backToCollectionBtn">
+              <i class="fas fa-arrow-left"></i> BACK TO COLLECTION
+            </a>
+          </div>
+        </div>
+      </div>`;
+
+      document.getElementById("app-root").innerHTML = crazyHTML;
+
+      const bigBtn = document.getElementById("bigAddCartBtn");
+      if (bigBtn) {
+        bigBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.addToCartExternal(product);
+        });
+      }
+
+      const backBtn = document.getElementById("backToCollectionBtn");
+      if (backBtn) {
+        backBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          document.getElementById('searchInput').value = '';
+          renderOriginalCollection();
+          attachCartGlobals();
+        });
+      }
+    }
+
+    window.addToCartExternal = async function (product) {
+         if (!currentUser) {
+        showToast("Please sign in to add items to cart", "error");
+        setTimeout(() => {
+            window.location.href = "./signinn.html";
+        }, 2000);
+        return false;
+    }
+      const cartItem = {
+        productId: product.name.replace(/\s/g, "_").toLowerCase(),
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        image: product.image,
+        quantity: 1,
+        addedAt: new Date().toISOString()
+      };
+
+      if (!currentUser) {
+        addToLocalCart(product);
+        showToast(
+          `${product.name} added to cart (saved locally)`,
+          "info"
+        );
+        return;
+      }
+
+      try {
+        const cartRef = doc(db, "carts", currentUser.uid);
+        const cartSnap = await getDoc(cartRef);
+        let items = [];
+
+        if (cartSnap.exists()) {
+          items = cartSnap.data().items || [];
+          const existing = items.find(
+            (item) => item.productId === cartItem.productId
+          );
+
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            items.push(cartItem);
+          }
+
+          await updateDoc(cartRef, {
+            items,
+            lastUpdated: new Date().toISOString()
+          });
+        } else {
+          await setDoc(cartRef, {
+            userId: currentUser.uid,
+            email: currentUser.email,
+            items: [cartItem],
+            createdAt: new Date().toISOString(),
+            lastUpdated: new Date().toISOString()
+          });
+        }
+
+        showToast(`${product.name} added to cart!`);
+        await loadCart();
+      } catch (error) {
+        addToLocalCart(product);
+        showToast(`${product.name} added locally`);
+      }
+    };
+
+    function attachOriginalEventListeners() {
+      document.querySelectorAll('.shop-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const prodDataAttr = btn.getAttribute('data-view-details');
+          if (prodDataAttr) {
+            const product = JSON.parse(prodDataAttr);
+            renderSingleProduct(product);
+          }
+        });
+      });
+      document.querySelectorAll('.cart-icon-btn').forEach(button => {
+        button.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const productData = JSON.parse(button.getAttribute('data-product'));
+          await window.addToCartExternal(productData);
+        });
+      });
+    }
+
+    function updateAuthUI(user) {
+      const loginLink = document.getElementById('loginLink');
+      const userLabel = document.getElementById('userLabel');
+
+      if (!loginLink || !userLabel) return;
+
+      if (user) {
+        loginLink.textContent = 'LOGOUT';
+        loginLink.href = '#';
+        userLabel.textContent = user.email || user.displayName || 'Signed in';
+      } else {
+        loginLink.textContent = 'LOGIN';
+        loginLink.href = './signinn.html';
+        userLabel.textContent = '';
+        clearCartState();
+      }
+    }
+
+    function addToLocalCart(product) {
+        if (!currentUser) {
+        showToast("Please sign in to add items to cart", "error");
+        return false;
+    }
+      const cart = JSON.parse(
+        localStorage.getItem('tmk_cart') || '{"items":[]}'
+      );
+
+      const pid = product.name.replace(/\s/g, '_').toLowerCase();
+      const existing = cart.items.find(
+        (item) => item.productId === pid
+      );
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.items.push({
+          productId: pid,
+          name: product.name,
+          price: product.price,
+          category: product.category,
+          image: product.image,
+          quantity: 1
+        });
+      }
+
+      localStorage.setItem('tmk_cart', JSON.stringify(cart));
+      updateCartUI(cart);
+    }
+
+    async function clearCartState(remoteUid) {
+      localStorage.removeItem('tmk_cart');
+      localStorage.setItem('tmk_cart_cleared', '1');
+      updateCartUI({ items: [] });
+
+      const cartCountElement = document.getElementById('cartCount');
+      if (cartCountElement) cartCountElement.innerText = '0';
+
+      if (!remoteUid) return;
+
+      try {
+        await setDoc(
+          doc(db, 'carts', remoteUid),
+          {
+            items: [],
+            lastUpdated: new Date().toISOString()
+          }
+        );
+      } catch (error) {
+
+      }
+    }
+
+    async function loadCart() {
+      if (!currentUser) {
+        if (localStorage.getItem('tmk_cart_cleared')) {
+          localStorage.removeItem('tmk_cart');
+          localStorage.removeItem('tmk_cart_cleared');
+          updateCartUI({ items: [] });
+          return;
+        }
+
+        const localCart = JSON.parse(
+          localStorage.getItem('tmk_cart') || '{"items":[]}'
+        );
+        updateCartUI(localCart);
+        return;
+      }
+
+      try {
+        const cartSnap = await getDoc(
+          doc(db, 'carts', currentUser.uid)
+        );
+
+        if (cartSnap.exists()) {
+          updateCartUI(cartSnap.data());
+        } else {
+          updateCartUI({ items: [] });
+        }
+      } catch (error) {
+        updateCartUI({ items: [] });
+      }
+    }
+    function updateCartUI(cartData) {
+      const items = cartData.items || [];
+      const totalItems = items.reduce(
+        (sum, item) => sum + (item.quantity || 1),
+        0
+      );
+
+      document.getElementById('cartCount').innerText = totalItems;
+      const container = document.getElementById('cartItems');
+      const footer = document.getElementById('cartFooter');
+
+      if (items.length === 0) {
+        container.innerHTML =
+          '<div class="empty-cart">Your bag is empty</div>';
+        footer.style.display = 'none';
+        return;
+      }
+
+      footer.style.display = 'block';
+
+      document.getElementById('cartTotal').innerText = `$${items.reduce(
+        (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+        0
+      )}`;
+
+      container.innerHTML = items
+        .map((item) => {
+          return `
+          <div class="cart-item">
+            <img
+              class="cart-item-image"
+              src="${item.image}"
+              onerror="this.src='https://via.placeholder.com/80'"
+            >
+            <div class="cart-item-details">
+              <div class="cart-item-title">${item.name}</div>
+              <div class="cart-item-price">$${item.price}</div>
+              <div class="cart-item-quantity">
+                <button onclick="window.updateQuantityGlobal('${item.productId}', -1)">-</button>
+                <span>${item.quantity || 1}</span>
+                <button onclick="window.updateQuantityGlobal('${item.productId}', 1)">+</button>
+              </div>
+              <div class="remove-item" onclick="window.removeFromCartGlobal('${item.productId}')">
+                Remove
+              </div>
+            </div>
+          </div>`;
+        })
+        .join('');
+    }
+    window.updateQuantityGlobal = async function (productId, change) {
+      if (!currentUser) {
+        const cart = JSON.parse(
+          localStorage.getItem('tmk_cart') || '{"items":[]}'
+        );
+        const index = cart.items.findIndex(
+          (item) => item.productId === productId
+        );
+
+        if (index === -1) return;
+
+        cart.items[index].quantity += change;
+
+        if (cart.items[index].quantity <= 0) {
+          cart.items.splice(index, 1);
+        }
+
+        localStorage.setItem('tmk_cart', JSON.stringify(cart));
+        updateCartUI(cart);
+        return;
+      }
+
+      try {
+        const cartRef = doc(db, 'carts', currentUser.uid);
+        const snap = await getDoc(cartRef);
+
+        if (!snap.exists()) return;
+
+        const items = snap.data().items || [];
+        const index = items.findIndex(
+          (item) => item.productId === productId
+        );
+        if (index === -1) return;
+
+        items[index].quantity += change;
+        if (items[index].quantity <= 0) {
+          items.splice(index, 1);
+        }
+
+        await updateDoc(cartRef, {
+          items,
+          lastUpdated: new Date().toISOString()
+        });
+
+        await loadCart();
+      } catch (error) {
+
+      }
+    };
+    window.removeFromCartGlobal = async function (productId) {
+      if (!currentUser) {
+        const cart = JSON.parse(
+          localStorage.getItem('tmk_cart') || '{"items":[]}'
+        );
+        cart.items = cart.items.filter(
+          (item) => item.productId !== productId
+        );
+        localStorage.setItem('tmk_cart', JSON.stringify(cart));
+        updateCartUI(cart);
+        return;
+      }
+
+      try {
+        const cartRef = doc(db, 'carts', currentUser.uid);
+        const snap = await getDoc(cartRef);
+
+        if (!snap.exists()) return;
+
+        const items = snap.data().items || [];
+        await updateDoc(cartRef, {
+          items: items.filter((item) => item.productId !== productId),
+          lastUpdated: new Date().toISOString()
+        });
+        await loadCart();
+      } catch (error) {
+        // ignore error
+      }
+    };
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.textContent = message;
+
+      if (type === 'error') {
+        toast.style.background = '#c77d6f';
+      } else if (type === 'info') {
+        toast.style.background = '#8e7c6f';
+      } else {
+        toast.style.background = '#1e1c1a';
+      }
+
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2500);
+    }
+
+    function attachCartGlobals() {
+      const cartIcon = document.getElementById('cartIcon');
+      const closeCart = document.getElementById('closeCart');
+      const cartSidebar = document.getElementById('cartSidebar');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      const loginLink = document.getElementById('loginLink');
+
+      cartIcon?.addEventListener('click', () => {
+        cartSidebar.classList.add('open');
+      });
+
+      closeCart?.addEventListener('click', () => {
+        cartSidebar.classList.remove('open');
+      });
+
+      cartOverlay?.addEventListener('click', () => {
+        cartSidebar.classList.remove('open');
+      });
+
+      checkoutBtn?.addEventListener('click', async () => {
+        if (!currentUser) {
+          showToast('Please sign in to checkout');
+          setTimeout(() => { window.location.href = './signinn.html'; }, 2000);
+          return;
+        }
+        try {
+          const cartSnap = await getDoc(doc(db, 'carts', currentUser.uid));
+          const items = cartSnap.exists() ? (cartSnap.data().items || []) : [];
+          if (!items.length) {
+            showToast('Your cart is empty. Add items first.', 'error');
+            return;
+          }
+          localStorage.setItem('tmk_cart', JSON.stringify({ items }));
+          window.location.href = 'checkout.html';
+        } catch (error) {
+          showToast('Could not load cart. Try again.', 'error');
+        }
+      });
+
+      loginLink?.addEventListener('click', async (event) => {
+        if (!currentUser) return;
+        event.preventDefault();
+        const signedOutUid = currentUser.uid;
+        currentUser = null;
+        updateAuthUI(null);
+        await clearCartState(signedOutUid);
+        try {
+          await signOut(auth);
+          showToast('Signed out successfully', 'info');
+        } catch (error) {
+          showToast('Sign out failed', 'error');
+        }
+      });
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      updateAuthUI(user);
+      renderOriginalCollection();
+      attachCartGlobals();
+      document.getElementById('searchInput').addEventListener('input', handleSearch);
+      await loadCart();
+    });
+
+    renderOriginalCollection();
+    attachCartGlobals();
+    document.getElementById('searchInput').addEventListener('input', handleSearch);
+  </script>
+</body>
+
+</html>

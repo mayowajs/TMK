@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>TMK Fashion — Avant-Garde Style & Identity</title>
+  <link rel="stylesheet" href="collections.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-left">
+    <span class="logo-icon">◊</span>
+    <span>TMK FASHION</span>
+  </div>
+  <nav class="nav-right">
+    <a href="#" class="active">ATELIER</a>
+    <a href="#collections">RUNWAY</a>
+    <a href="#collections">COLLECTIONS</a>
+    <a href="#">EDITORIAL</a>
+    <a href="#">MAISON</a>
+    <!-- ADDED: Cart Icon with Counter -->
+    <div class="cart-icon-container">
+      <button class="cart-nav-btn" id="cartIcon">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ADDED: Cart Sidebar -->
+<div id="cartOverlay" class="cart-overlay"></div>
+<div id="cartSidebar" class="cart-sidebar">
+  <div class="cart-header">
+    <h3>Your Bag</h3>
+    <button id="closeCart" class="close-cart">&times;</button>
+  </div>
+  <div id="cartItems" class="cart-items">
+    <div class="empty-cart">Your bag is empty</div>
+  </div>
+  <div id="cartFooter" class="cart-footer" style="display: none;">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">$0</span>
+    </div>
+    <button id="checkoutBtn" class="checkout-btn">CHECKOUT</button>
+  </div>
+</div>
+
+<div id="collections">
+  <section class="collection-hero">
+    <h1>THE COLLECTIONS</h1>
+    <p>Discover our curated selection of timeless pieces — where craftsmanship meets contemporary elegance</p>
+  </section>
+
+  <div class="category-tabs">
+    <a href="#ALLk" class="category-tab active">ALL</a>
+    <a href="./tron.html" class="category-tab">WOMEN</a>
+    <a href="./mens.html" class="category-tab">MEN</a>
+    <a href="#accessories" class="category-tab">ACCESSORIES</a>
+    <a href="#wrist-watches" class="category-tab">WRIST WATCHES</a>
+    <a href="#sunglasses" class="category-tab">SUNGLASSES</a>
+    <a href="#sneakers" class="category-tab">SNEAKERS</a>
+  </div>
+
+  <div class="gender-section" id="women">
+    <h2 class="gender-title">WOMEN'S COLLECTION</h2>
+    <div class="subcategory-grid">
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👗</div>
+        <div class="subcategory-name">Dresses</div>
+        <div class="subcategory-count">24 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👚</div>
+        <div class="subcategory-name">Tops & Blouses</div>
+        <div class="subcategory-count">32 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👖</div>
+        <div class="subcategory-name">Bottoms & Skirts</div>
+        <div class="subcategory-count">28 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">🧥</div>
+        <div class="subcategory-name">Outerwear</div>
+        <div class="subcategory-count">18 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👠</div>
+        <div class="subcategory-name">Footwear</div>
+        <div class="subcategory-count">26 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👜</div>
+        <div class="subcategory-name">Handbags</div>
+        <div class="subcategory-count">22 styles</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="featured-section">
+    <h3 class="featured-title">WOMEN'S COLLECTION</h3>
+    <div class="collection-grid">
+       
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/60759047-ed1a-402f-a793-b2f23c18887f.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Dress">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / DRESSES</div>
+          <div class="product-title">Silk Pleated Maxi Dress</div>
+          <div class="product-price">$425</div>
+          <!-- ADDED: Add to Cart Button -->
+          <button class="cart-icon-btn" data-product='{"name":"Silk Pleated Maxi Dress","price":425,"category":"WOMEN / DRESSES","image":"https://img.kwcdn.com/product/fancy/60759047-ed1a-402f-a793-b2f23c18887f.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/49cc00f6-39fc-41d6-ad36-cb6b98536663.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Dress">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / DRESSES</div>
+          <div class="product-title">Wool Blend Knit Dress</div>
+          <div class="product-price">$295</div>
+          <button class="cart-icon-btn" data-product='{"name":"Wool Blend Knit Dress","price":295,"category":"WOMEN / DRESSES","image":"https://img.kwcdn.com/product/fancy/49cc00f6-39fc-41d6-ad36-cb6b98536663.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/594df747-968a-4ceb-ae1c-b13bc0075cd4.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Top">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / TOPS</div>
+          <div class="product-title">Silk Asymmetric Blouse</div>
+          <div class="product-price">$245</div>
+          <button class="cart-icon-btn" data-product='{"name":"Silk Asymmetric Blouse","price":245,"category":"WOMEN / TOPS","image":"https://img.kwcdn.com/product/fancy/594df747-968a-4ceb-ae1c-b13bc0075cd4.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fmket/136bbe7c6cb576f4f27072657405d372.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Skirt">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / BOTTOMS</div>
+          <div class="product-title">Pleated Midi Skirt</div>
+          <div class="product-price">$195</div>
+          <button class="cart-icon-btn" data-product='{"name":"Pleated Midi Skirt","price":195,"category":"WOMEN / BOTTOMS","image":"https://img.kwcdn.com/product/fmket/136bbe7c6cb576f4f27072657405d372.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/143bd5d5-c5f1-4061-af7d-3ee7fc569812.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Shoes">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / FOOTWEAR</div>
+          <div class="product-title">Sculptural Leather Heels</div>
+          <div class="product-price">$385</div>
+          <button class="cart-icon-btn" data-product='{"name":"Sculptural Leather Heels","price":385,"category":"WOMEN / FOOTWEAR","image":"https://img.kwcdn.com/product/fancy/143bd5d5-c5f1-4061-af7d-3ee7fc569812.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/485af9f0-d513-400b-9916-7b8ef58e9d09.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Coat">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / OUTERWEAR</div>
+          <div class="product-title">Cashmere Blend Coat</div>
+          <div class="product-price">$595</div>
+          <button class="cart-icon-btn" data-product='{"name":"Cashmere Blend Coat","price":595,"category":"WOMEN / OUTERWEAR","image":"https://img.kwcdn.com/product/fancy/485af9f0-d513-400b-9916-7b8ef58e9d09.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+    
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/4dcf1a1c-d093-4f91-9d93-0f6f3ebbcc68.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Handbag">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / HANDBAGS</div>
+          <div class="product-title">Full-Grain Leather Tote</div>
+          <div class="product-price">$595</div>
+          <button class="cart-icon-btn" data-product='{"name":"Full-Grain Leather Tote","price":595,"category":"WOMEN / HANDBAGS","image":"https://img.kwcdn.com/product/fancy/4dcf1a1c-d093-4f91-9d93-0f6f3ebbcc68.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/0208953e-f7b9-48bd-bf9c-94fe05158401.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Dress">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / DRESSES</div>
+          <div class="product-title">Embroidered Evening Gown</div>
+          <div class="product-price">$895</div>
+          <button class="cart-icon-btn" data-product='{"name":"Embroidered Evening Gown","price":895,"category":"WOMEN / DRESSES","image":"https://img.kwcdn.com/product/fancy/0208953e-f7b9-48bd-bf9c-94fe05158401.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/0dc2d3e4-743e-4fee-b6e3-9eb4fc011253.jpg?imageView2/2/w/800/q/70/format/avif" alt="Women's Top">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WOMEN / TOPS</div>
+          <div class="product-title">Cashmere Crewneck Sweater</div>
+          <div class="product-price">$275</div>
+          <button class="cart-icon-btn" data-product='{"name":"Cashmere Crewneck Sweater","price":275,"category":"WOMEN / TOPS","image":"https://img.kwcdn.com/product/fancy/0dc2d3e4-743e-4fee-b6e3-9eb4fc011253.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="gender-section" id="men">
+    <h2 class="gender-title">MEN'S COLLECTION</h2>
+    <div class="subcategory-grid">
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👕</div>
+        <div class="subcategory-name">Tops & Shirts</div>
+        <div class="subcategory-count">28 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👖</div>
+        <div class="subcategory-name">Trousers & Pants</div>
+        <div class="subcategory-count">22 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👞</div>
+        <div class="subcategory-name">Footwear</div>
+        <div class="subcategory-count">24 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">🔗</div>
+        <div class="subcategory-name">Belts</div>
+        <div class="subcategory-count">15 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">🧥</div>
+        <div class="subcategory-name">Jackets & Outerwear</div>
+        <div class="subcategory-count">20 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👔</div>
+        <div class="subcategory-name">Suits & Blazers</div>
+        <div class="subcategory-count">14 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">💼</div>
+        <div class="subcategory-name">Bags & Briefcases</div>
+        <div class="subcategory-count">12 styles</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-section">
+    <h3 class="featured-title">MEN'S COLLECTION</h3>
+    <div class="collection-grid">
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fmket/58c25806d830ceea4160bdd52e9c59a8.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Trousers">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / TROUSERS</div>
+          <div class="product-title">Tailored jean Trousers</div>
+          <div class="product-price">$285</div>
+          <button class="cart-icon-btn" data-product='{"name":"Tailored jean Trousers","price":285,"category":"MEN / TROUSERS","image":"https://img.kwcdn.com/product/fmket/58c25806d830ceea4160bdd52e9c59a8.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/081bbebd-2cc7-4ca5-ba3c-097e603cabb7.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Shoes">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / FOOTWEAR</div>
+          <div class="product-title">Handcrafted Leather Oxfords</div>
+          <div class="product-price">$495</div>
+          <button class="cart-icon-btn" data-product='{"name":"Handcrafted Leather Oxfords","price":495,"category":"MEN / FOOTWEAR","image":"https://img.kwcdn.com/product/fancy/081bbebd-2cc7-4ca5-ba3c-097e603cabb7.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/03f71a07-9fd5-4a5a-9134-036ad4e62ecc.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Belt">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / BELTS</div>
+          <div class="product-title">Italian Leather Belt with Brass Buckle</div>
+          <div class="product-price">$125</div>
+          <button class="cart-icon-btn" data-product='{"name":"Italian Leather Belt with Brass Buckle","price":125,"category":"MEN / BELTS","image":"https://img.kwcdn.com/product/fancy/03f71a07-9fd5-4a5a-9134-036ad4e62ecc.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/65537292-78e2-4325-9ee4-cc29cd2dad89.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Shirt">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / TOPS</div>
+          <div class="product-title">Relaxed Linen Button-Up Shirt</div>
+          <div class="product-price">$165</div>
+          <button class="cart-icon-btn" data-product='{"name":"Relaxed Linen Button-Up Shirt","price":165,"category":"MEN / TOPS","image":"https://img.kwcdn.com/product/fancy/65537292-78e2-4325-9ee4-cc29cd2dad89.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/b25339ec-d59e-4688-8e4e-c4912a152faa.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Coat">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / OUTERWEAR</div>
+          <div class="product-title">Cashmere Wool Overcoat</div>
+          <div class="product-price">$695</div>
+          <button class="cart-icon-btn" data-product='{"name":"Cashmere Wool Overcoat","price":695,"category":"MEN / OUTERWEAR","image":"https://img.kwcdn.com/product/fancy/b25339ec-d59e-4688-8e4e-c4912a152faa.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/2249a3f6-df1d-471a-8411-860dc1991024.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Suit">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / SUITS</div>
+          <div class="product-title">Tailored Two-Piece Suit</div>
+          <div class="product-price">$895</div>
+          <button class="cart-icon-btn" data-product='{"name":"Tailored Two-Piece Suit","price":895,"category":"MEN / SUITS","image":"https://img.kwcdn.com/product/fancy/2249a3f6-df1d-471a-8411-860dc1991024.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/879c2e27-8878-4ce2-abf1-658d30a8a470.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Shirt">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / TOPS</div>
+          <div class="product-title">Egyptian Cotton Dress Shirt</div>
+          <div class="product-price">$145</div>
+          <button class="cart-icon-btn" data-product='{"name":"Egyptian Cotton Dress Shirt","price":145,"category":"MEN / TOPS","image":"https://img.kwcdn.com/product/fancy/879c2e27-8878-4ce2-abf1-658d30a8a470.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+    
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/499e88f0-124f-4ee7-b35f-c5a75cb16a24.jpg?imageView2/2/w/800/q/70/format/avif" alt="Men's Trousers">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MEN / TROUSERS</div>
+          <div class="product-title">Slim Fit Chino Pants</div>
+          <div class="product-price">$165</div>
+          <button class="cart-icon-btn" data-product='{"name":"Slim Fit Chino Pants","price":165,"category":"MEN / TROUSERS","image":"https://img.kwcdn.com/product/fancy/499e88f0-124f-4ee7-b35f-c5a75cb16a24.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div class="gender-section" id="accessories">
+    <h2 class="gender-title">ACCESSORIES & WRIST WATCHES</h2>
+    <div class="subcategory-grid">
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👜</div>
+        <div class="subcategory-name">Bags & Luggage</div>
+        <div class="subcategory-count">18 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">⛓️</div>
+        <div class="subcategory-name">Belts (Unisex)</div>
+        <div class="subcategory-count">12 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">💎</div>
+        <div class="subcategory-name">Jewelry</div>
+        <div class="subcategory-count">24 pieces</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">⌚</div>
+        <div class="subcategory-name">Wrist Watches</div>
+        <div class="subcategory-count">32 timepieces</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">🧣</div>
+        <div class="subcategory-name">Scarves & Hats</div>
+        <div class="subcategory-count">16 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">🕶️</div>
+        <div class="subcategory-name">Sunglasses</div>
+        <div class="subcategory-count">20 styles</div>
+      </div>
+      <div class="subcategory-card">
+        <div class="subcategory-icon">👛</div>
+        <div class="subcategory-name">Wallets & Cardholders</div>
+        <div class="subcategory-count">14 styles</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="featured-section">
+    <h3 class="featured-title">ACCESSORIES & WATCHES</h3>
+    <div class="collection-grid">
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/3e727c6a-ea50-441f-a7c7-89d1f7c2dd35.jpg?imageView2/2/w/800/q/70/format/avif" alt="Leather Bag">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / BAGS</div>
+          <div class="product-title">Full-Grain Leather Tote</div>
+          <div class="product-price">$595</div>
+          <button class="cart-icon-btn" data-product='{"name":"Full-Grain Leather Tote","price":595,"category":"ACCESSORIES / BAGS","image":"https://img.kwcdn.com/product/fancy/3e727c6a-ea50-441f-a7c7-89d1f7c2dd35.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif" alt="Luxury Watch">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WRIST WATCHES</div>
+          <div class="product-title">Minimalist Automatic Watch</div>
+          <div class="product-price">$1,250</div>
+          <button class="cart-icon-btn" data-product='{"name":"Minimalist Automatic Watch","price":1250,"category":"WRIST WATCHES","image":"https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+      
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/92d1443f-1a31-4762-8f5b-7025bbee5d87.jpg?imageView2/2/w/800/q/70/format/avif" alt="Chronograph Watch">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WRIST WATCHES</div>
+          <div class="product-title">Chronograph Stainless Steel</div>
+          <div class="product-price">$890</div>
+          <button class="cart-icon-btn" data-product='{"name":"Chronograph Stainless Steel","price":890,"category":"WRIST WATCHES","image":"https://img.kwcdn.com/product/fancy/92d1443f-1a31-4762-8f5b-7025bbee5d87.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+   
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/03e8ae71-c314-4b3e-9718-0b80ea3a6a69.jpg?imageView2/2/w/800/q/70/format/avif" alt="Gold Necklace">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / JEWELRY</div>
+          <div class="product-title">Gold-Plated Layered Necklace</div>
+          <div class="product-price">$185</div>
+          <button class="cart-icon-btn" data-product='{"name":"Gold-Plated Layered Necklace","price":185,"category":"ACCESSORIES / JEWELRY","image":"https://img.kwcdn.com/product/fancy/03e8ae71-c314-4b3e-9718-0b80ea3a6a69.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/a8eb954e-2084-45eb-92eb-c781f94b6a1e.jpg?imageView2/2/w/800/q/70/format/avif" alt="Leather Belt">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / BELTS</div>
+          <div class="product-title">Minimalist Leather Belt</div>
+          <div class="product-price">$95</div>
+          <button class="cart-icon-btn" data-product='{"name":"Minimalist Leather Belt","price":95,"category":"ACCESSORIES / BELTS","image":"https://img.kwcdn.com/product/fancy/a8eb954e-2084-45eb-92eb-c781f94b6a1e.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+  
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/299806d3-0799-4f57-8136-a5ff18ce9af5.jpg?imageView2/2/w/800/q/70/format/avif" alt="Sunglasses">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / SUNGLASSES</div>
+          <div class="product-title">Aviator Sunglasses</div>
+          <div class="product-price">$195</div>
+          <button class="cart-icon-btn" data-product='{"name":"Aviator Sunglasses","price":195,"category":"ACCESSORIES / SUNGLASSES","image":"https://img.kwcdn.com/product/fancy/299806d3-0799-4f57-8136-a5ff18ce9af5.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/ed10f721-93b6-4a61-bd7a-1cad297b4288.jpg?imageView2/2/w/800/q/70/format/avif" alt="Leather Wallet">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / WALLETS</div>
+          <div class="product-title">Slim Leather Wallet</div>
+          <div class="product-price">$75</div>
+          <button class="cart-icon-btn" data-product='{"name":"Slim Leather Wallet","price":75,"category":"ACCESSORIES / WALLETS","image":"https://img.kwcdn.com/product/fancy/ed10f721-93b6-4a61-bd7a-1cad297b4288.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+      
+     
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://img.kwcdn.com/product/fancy/c5de5b6f-cd89-4f1d-ac65-a37594829024.jpg?imageView2/2/w/800/q/70/format/avif" alt="Silk Scarf">
+        </div>
+        <div class="product-info">
+          <div class="product-category">ACCESSORIES / SCARVES</div>
+          <div class="product-title">Silk Jacquard Scarf</div>
+          <div class="product-price">$125</div>
+          <button class="cart-icon-btn" data-product='{"name":"Silk Jacquard Scarf","price":125,"category":"ACCESSORIES / SCARVES","image":"https://img.kwcdn.com/product/fancy/c5de5b6f-cd89-4f1d-ac65-a37594829024.jpg?imageView2/2/w/800/q/70/format/avif"}'>🛒 ADD TO CART</button>
+          <a href="#" class="product-btn">VIEW DETAILS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <a href="#" class="back-link">↑ BACK TO TOP</a>
+</div>
+
+
+<section class="statement-section">
+  <div class="statement-container">
+    <div class="statement-left">
+      <div class="statement-headline">
+        <span class="headline-badge">THE MAISON CODE</span>
+        <span class="headline-main">Craft, culture & the modern edge</span>
+      </div>
+    </div>
+    <div class="statement-right">
+      <p class="statement-text">
+        TMK Fashion exists at the intersection of heritage craftsmanship and contemporary avant-garde. 
+        We design for those who view clothing as armor — sharp, intentional, effortlessly powerful.
+      </p>
+      <div class="statement-stats">
+        <div class="stat-item"><span class="stat-number">12</span><span class="stat-label">SEASONS</span></div>
+        <div class="stat-item"><span class="stat-number">38</span><span class="stat-label">ICONIC LOOKS</span></div>
+        <div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">CREATIVE CODE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars-section">
+  <div class="section-header">
+    <h2 class="section-title">THE AVANT-GARDE PILLARS</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="card-image"><img src="https://img.kwcdn.com/product/fmket/be05208c21c9d78f4b3da7c7b02c80f7.jpg?imageView2/2/w/800/q/70/format/avif" alt="Tailoring"></div>
+      <div class="card-content"><h3>ARCHITECTURAL TAILORING</h3><p>Sculptural forms, sharp lines, deconstructed elegance.</p><div class="card-tags"><span>STRUCTURE</span><span>WOOL</span><span>LINEN</span></div></div>
+    </div>
+    <div class="pillar-card">
+      <div class="card-image"><img src="https://img.kwcdn.com/product/fmket/b5874dfbccba92430e524d0762db79ea.jpg?imageView2/2/w/800/q/70/format/avif" alt="Street Couture"></div>
+      <div class="card-content"><h3>STREET COUTURE</h3><p>Urban energy refined with luxury finishes & drape.</p><div class="card-tags"><span>LAYERING</span><span>DENIM</span><span>KNIT</span></div></div>
+    </div>
+    <div class="pillar-card">
+      <div class="card-image"><img src="https://img.kwcdn.com/product/fancy/fdb75f1f-8233-4328-b962-ea333fbcae1b.jpg?imageView2/2/w/800/q/70/format/avif" alt="Sustainable"></div>
+      <div class="card-content"><h3>SUSTAINABLE LUXE</h3><p>Responsible sourcing, zero-waste philosophy.</p><div class="card-tags"><span>ETHICAL</span><span>RECYCLED</span><span>VEGAN</span></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">TMK FASHION</div>
+  <div class="footer-links">
+    <a href="#">Atelier</a>
+    <a href="#">Editorial</a>
+    <a href="#">Press</a>
+    <a href="#">Sustainability</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copyright">
+    <p>© 2026 TMK FASHION — ALL RIGHTS RESERVED</p>
+    <p class="footer-tagline">SCULPTURE · SILENCE · STATEMENT</p>
+  </div>
+</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJvAldm8oz85fqW0-_p_vN3tBdm2TUh7A",
+    authDomain: "blogs-dd2ff.firebaseapp.com",
+    projectId: "blogs-dd2ff",
+    storageBucket: "blogs-dd2ff.firebasestorage.app",
+    messagingSenderId: "347508262669",
+    appId: "1:347508262669:web:a29edfbd441a7573895244",
+    measurementId: "G-NJY2WN9EGC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  
+  let currentUser = null;
+  let cartState = { items: [] };
+  
+  // Add user status indicator to nav
+  function addUserStatusIndicator() {
+    const navRight = document.querySelector('.nav-right');
+    if (navRight && !document.querySelector('.user-status')) {
+      const userStatusDiv = document.createElement('div');
+      userStatusDiv.className = 'user-status';
+      userStatusDiv.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        margin-left: 1rem;
+        cursor: pointer;
+      `;
+      navRight.appendChild(userStatusDiv);
+    }
+  }
+  
+  function updateUserStatus() {
+    const userStatusDiv = document.querySelector('.user-status');
+    if (!userStatusDiv) return;
+    
+    if (currentUser) {
+      userStatusDiv.innerHTML = `
+        <i class="fas fa-user-circle" style="font-size: 1.2rem;"></i>
+        <span>${currentUser.email}</span>
+        <i class="fas fa-sign-out-alt" id="signOutBtn" style="margin-left: 0.5rem; cursor: pointer; color: var(--taupe-dust);"></i>
+      `;
+      
+      const signOutBtn = document.getElementById('signOutBtn');
+      if (signOutBtn) {
+        signOutBtn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          try {
+            await signOut(auth);
+            showToast("Signed out successfully");
+            setTimeout(() => window.location.reload(), 1000);
+          } catch (error) {
+            console.error("Sign out error:", error);
+          }
+        });
+      }
+    } else {
+      userStatusDiv.innerHTML = `
+        <a href="./signinn.html" style="text-decoration: none; color: var(--taupe-dust);">
+          <i class="fas fa-user"></i>
+          <span>SIGN IN</span>
+        </a>
+      `;
+    }
+  }
+  
+  // LocalStorage backup functions
+  function getLocalCart() {
+    const cart = localStorage.getItem('tmk_cart');
+    return cart ? JSON.parse(cart) : { items: [] };
+  }
+  
+  function saveLocalCart(cartData) {
+    localStorage.setItem('tmk_cart', JSON.stringify(cartData));
+  }
+  
+  function addToLocalCart(product) {
+      if (!currentUser) {
+        showToast("Please sign in to add items to cart", "error");
+        return false;
+    }
+    const cart = getLocalCart();
+    const productId = product.name.replace(/\s/g, '_').toLowerCase();
+    const existingItem = cart.items.find(item => item.productId === productId);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.items.push({
+        productId: productId,
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        image: product.image,
+        quantity: 1,
+        addedAt: new Date().toISOString()
+      });
+    }
+    
+    saveLocalCart(cart);
+    updateCartUI(cart);
+    return true;
+  }
+  
+  function removeFromLocalCart(productId) {
+    const cart = getLocalCart();
+    cart.items = cart.items.filter(item => item.productId !== productId);
+    saveLocalCart(cart);
+    updateCartUI(cart);
+  }
+  
+  function updateLocalCartQuantity(productId, change) {
+    const cart = getLocalCart();
+    const itemIndex = cart.items.findIndex(item => item.productId === productId);
+    
+    if (itemIndex !== -1) {
+      const newQuantity = cart.items[itemIndex].quantity + change;
+      
+      if (newQuantity <= 0) {
+        cart.items.splice(itemIndex, 1);
+      } else {
+        cart.items[itemIndex].quantity = newQuantity;
+      }
+      
+      saveLocalCart(cart);
+      updateCartUI(cart);
+    }
+  }
+  
+  // Firebase Cart functions
+  async function addToCart(product) {
+      if (!currentUser) {
+        showToast("Please sign in to add items to cart", "error");
+        setTimeout(() => {
+            window.location.href = "./signinn.html";
+        }, 2000);
+        return false;
+    }
+    console.log("Adding to cart. User:", currentUser ? currentUser.email : "Not logged in");
+    console.log("Product:", product);
+    
+    if (!currentUser) {
+      // Use localStorage for guest users
+      addToLocalCart(product);
+      showToast(`${product.name} added to cart (saved locally)`, "info");
+      return true;
+    }
+    
+    try {
+      const cartRef = doc(db, "carts", currentUser.uid);
+      console.log("Cart reference:", cartRef.path);
+      
+      const cartSnap = await getDoc(cartRef);
+      console.log("Cart exists:", cartSnap.exists());
+      
+      const cartItem = {
+        productId: product.name.replace(/\s/g, '_').toLowerCase(),
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        image: product.image,
+        quantity: 1,
+        addedAt: new Date().toISOString()
+      };
+      
+      if (cartSnap.exists()) {
+        const existingItems = cartSnap.data().items || [];
+        const existingIndex = existingItems.findIndex(item => item.productId === cartItem.productId);
+        
+        if (existingIndex !== -1) {
+          existingItems[existingIndex].quantity += 1;
+          await updateDoc(cartRef, {
+            items: existingItems,
+            lastUpdated: new Date().toISOString()
+          });
+          console.log("Updated existing item quantity");
+        } else {
+          await updateDoc(cartRef, {
+            items: arrayUnion(cartItem),
+            lastUpdated: new Date().toISOString()
+          });
+          console.log("Added new item to cart");
+        }
+      } else {
+        await setDoc(cartRef, {
+          userId: currentUser.uid,
+          email: currentUser.email,
+          items: [cartItem],
+          lastUpdated: new Date().toISOString(),
+          createdAt: new Date().toISOString()
+        });
+        console.log("Created new cart document");
+      }
+      
+      showToast(`${product.name} added to cart!`);
+      await loadCart();
+      return true;
+    } catch (error) {
+      console.error("Firebase error details:", error);
+      // Fallback to localStorage if Firebase fails
+      addToLocalCart(product);
+      showToast(`${product.name} added to cart (saved locally)`, "info");
+      return true;
+    }
+  }
+  
+  async function loadCart() {
+    console.log("Loading cart. User:", currentUser ? currentUser.email : "Guest");
+    
+    if (!currentUser) {
+      const localCart = getLocalCart();
+      console.log("Local cart items:", localCart.items.length);
+      updateCartUI(localCart);
+      return;
+    }
+    
+    try {
+      const cartRef = doc(db, "carts", currentUser.uid);
+      const cartSnap = await getDoc(cartRef);
+      
+      if (cartSnap.exists()) {
+        const cartData = cartSnap.data();
+        console.log("Firebase cart items:", cartData.items.length);
+        updateCartUI(cartData);
+        
+       
+        const localCart = getLocalCart();
+        if (localCart.items.length > 0) {
+          console.log("Syncing local cart with Firebase...");
+          for (const item of localCart.items) {
+            await addToCart({
+              name: item.name,
+              price: item.price,
+              category: item.category,
+              image: item.image
+            });
+          }
+       
+          localStorage.removeItem('tmk_cart');
+          console.log("Local cart synced and cleared");
+        }
+      } else {
+        
+        const localCart = getLocalCart();
+        if (localCart.items.length > 0) {
+          console.log("Using local cart data");
+          updateCartUI(localCart);
+        } else {
+          updateCartUI({ items: [] });
+        }
+      }
+    } catch (error) {
+      console.error("Error loading cart from Firebase:", error);
+      // Fallback to localStorage
+      const localCart = getLocalCart();
+      updateCartUI(localCart);
+    }
+  }
+  
+  async function updateQuantity(productId, change) {
+    console.log("Updating quantity:", productId, change);
+    
+    if (!currentUser) {
+      updateLocalCartQuantity(productId, change);
+      return;
+    }
+    
+    try {
+      const cartRef = doc(db, "carts", currentUser.uid);
+      const cartSnap = await getDoc(cartRef);
+      
+      if (cartSnap.exists()) {
+        let items = cartSnap.data().items || [];
+        const itemIndex = items.findIndex(item => item.productId === productId);
+        
+        if (itemIndex !== -1) {
+          const newQuantity = items[itemIndex].quantity + change;
+          
+          if (newQuantity <= 0) {
+            items = items.filter(item => item.productId !== productId);
+          } else {
+            items[itemIndex].quantity = newQuantity;
+          }
+          
+          await updateDoc(cartRef, {
+            items: items,
+            lastUpdated: new Date().toISOString()
+          });
+          
+          await loadCart();
+        }
+      }
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+      updateLocalCartQuantity(productId, change);
+    }
+  }
+  
+  async function removeFromCart(productId) {
+    console.log("Removing from cart:", productId);
+    
+    if (!currentUser) {
+      removeFromLocalCart(productId);
+      showToast("Item removed from cart");
+      return;
+    }
+    
+    try {
+      const cartRef = doc(db, "carts", currentUser.uid);
+      const cartSnap = await getDoc(cartRef);
+      
+      if (cartSnap.exists()) {
+        const items = cartSnap.data().items || [];
+        const updatedItems = items.filter(item => item.productId !== productId);
+        
+        await updateDoc(cartRef, {
+          items: updatedItems,
+          lastUpdated: new Date().toISOString()
+        });
+        
+        await loadCart();
+        showToast("Item removed from cart");
+      }
+    } catch (error) {
+      console.error("Error removing from cart:", error);
+      removeFromLocalCart(productId);
+      showToast("Item removed from cart");
+    }
+  }
+  
+  function updateCartUI(cartData) {
+    cartState = cartData || { items: [] };
+    const items = cartState.items || [];
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartFooter = document.getElementById('cartFooter');
+    const cartCount = document.getElementById('cartCount');
+    
+    const totalItems = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const totalPrice = items.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 1)), 0);
+    
+    cartCount.textContent = totalItems;
+    
+    if (items.length === 0) {
+      cartItemsContainer.innerHTML = '<div class="empty-cart">Your bag is empty</div>';
+      cartFooter.style.display = 'none';
+      return;
+    }
+    
+    cartFooter.style.display = 'block';
+    document.getElementById('cartTotal').textContent = `$${totalPrice}`;
+    
+    cartItemsContainer.innerHTML = items.map(item => `
+      <div class="cart-item">
+        <img class="cart-item-image" src="${item.image || ''}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80?text=TMK'">
+        <div class="cart-item-details">
+          <div class="cart-item-title">${item.name}</div>
+          <div class="cart-item-price">$${item.price}</div>
+          <div class="cart-item-quantity">
+            <button onclick="window.updateQuantity('${item.productId}', -1)">-</button>
+            <span>${item.quantity || 1}</span>
+            <button onclick="window.updateQuantity('${item.productId}', 1)">+</button>
+          </div>
+          <div class="remove-item" onclick="window.removeFromCart('${item.productId}')">Remove</div>
+        </div>
+      </div>
+    `).join('');
+  }
+  
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    toast.style.background = type === 'error' ? '#c77d6f' : type === 'info' ? '#8e7c6f' : '#1e1c1a';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+  
+ 
+  window.updateQuantity = updateQuantity;
+  window.removeFromCart = removeFromCart;
+  
+
+  const cartIcon = document.getElementById('cartIcon');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const closeCart = document.getElementById('closeCart');
+  
+  function openCart() {
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('open');
+  }
+  
+  function closeCartSidebar() {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('open');
+  }
+  
+  if (cartIcon) cartIcon.addEventListener('click', openCart);
+  if (closeCart) closeCart.addEventListener('click', closeCartSidebar);
+  if (cartOverlay) cartOverlay.addEventListener('click', closeCartSidebar);
+  
+ 
+  document.querySelectorAll('.cart-icon-btn').forEach(button => {
+    button.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const productData = JSON.parse(button.getAttribute('data-product'));
+        console.log("Product clicked:", productData);
+        await addToCart(productData);
+      } catch (err) {
+        console.error("Error parsing product data:", err);
+        showToast("Error adding to cart", "error");
+      }
+    });
+  });
+
+  function attachProductDetailLinks() {
+    document.querySelectorAll('.product-btn').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const card = link.closest('.product-card');
+        if (!card) return;
+
+        const title = card.querySelector('.product-title')?.textContent.trim() || 'TMK Product';
+        const category = card.querySelector('.product-category')?.textContent.trim() || 'TMK / EDITION';
+        const priceText = card.querySelector('.product-price')?.textContent.trim() || '$0';
+        const image = card.querySelector('.product-image img')?.src || '';
+        const price = Number(priceText.replace(/[^0-9.]/g, '')) || 0;
+
+        const product = {
+          name: title,
+          category,
+          price,
+          image,
+          desc: `A TMK signature piece — bold, elevated and designed to make a statement.`
+        };
+
+        const encoded = encodeURIComponent(JSON.stringify(product));
+        window.location.href = `product.html?data=${encoded}`;
+      });
+    });
+  }
+
+  attachProductDetailLinks();
+  
+
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (!currentUser) {
+        showToast("Please sign in to checkout", "error");
+        setTimeout(() => {
+          window.location.href = "./signinn.html";
+        }, 2000);
+        return;
+      }
+
+      const cartItems = cartState.items.length;
+      if (cartItems === 0) {
+        showToast("Your cart is empty", "error");
+        return;
+      }
+
+      showToast("Proceeding to checkout...");
+      setTimeout(() => {
+        window.location.href = "checkout.html";
+      }, 1000);
+    });
+  }
+  
+ 
+  addUserStatusIndicator();
+  
+  // Auth state listener
+  onAuthStateChanged(auth, async (user) => {
+    console.log("Auth state changed. User:", user ? user.email : "No user");
+    currentUser = user;
+    updateUserStatus();
+    await loadCart();
+  });
+  
+ 
+  if (auth.currentUser) {
+    currentUser = auth.currentUser;
+    updateUserStatus();
+    loadCart();
+  }
+</script>
+
+</body>
+</html>

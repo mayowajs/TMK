@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TMK Fashion — Sign In | Welcome Back</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --chalk-white: #f7f5f0;
+      --pure-ivory: #fefaf5;
+      --charcoal-soft: #1e1c1a;
+      --slate-mist: #2c2a28;
+      --taupe-dust: #8e7c6f;
+      --gold-whisper: #c9b28b;
+      --pearl-glow: #e2dcd3;
+      --soft-black: #12100e;
+      --fade-grey: #d9d2c5;
+      --dark-gradient-start: #1e1c1a;
+      --dark-gradient-end: #2c2a28;
+      --light-gradient-start: #fefaf5;
+      --light-gradient-end: #f7f5f0;
+      --error-red: #c77d6f;
+      --success-green: #8f9e7c;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--charcoal-soft) 0%, var(--slate-mist) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 2rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(45deg, rgba(201, 178, 139, 0.03) 0px, rgba(201, 178, 139, 0.03) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+    }
+
+    .auth-container {
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      min-height: 650px;
+      background: var(--chalk-white);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 178, 139, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .auth-left {
+      flex: 1;
+      background: linear-gradient(135deg, var(--dark-gradient-start) 0%, var(--dark-gradient-end) 100%);
+      padding: 3rem 2.5rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .auth-left::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(201, 178, 139, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .auth-left::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-whisper), transparent);
+    }
+
+    .auth-left-content {
+      position: relative;
+      z-index: 2;
+      color: var(--pearl-glow);
+      text-align: center;
+    }
+
+    .brand-mark {
+      font-size: 4rem;
+      font-weight: 400;
+      color: var(--gold-whisper);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .auth-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 4px;
+      margin-bottom: 1rem;
+      color: var(--chalk-white);
+      text-transform: uppercase;
+    }
+
+    .auth-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--gold-whisper);
+      margin: 1rem auto;
+    }
+
+    .auth-subtitle {
+      font-size: 1rem;
+      color: var(--pearl-glow);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .feature-list {
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .feature-item i {
+      width: 30px;
+      color: var(--gold-whisper);
+      font-size: 1.2rem;
+    }
+
+    .auth-right {
+      flex: 1.2;
+      background: linear-gradient(135deg, var(--light-gradient-start) 0%, var(--light-gradient-end) 100%);
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .auth-right::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path d="M20 20 L30 10 L40 20 L30 40 L20 20 Z" fill="none" stroke="%238e7c6f"/><circle cx="70" cy="30" r="8" fill="none" stroke="%238e7c6f"/></svg>');
+      background-size: 30px;
+      pointer-events: none;
+    }
+
+    .auth-form-container {
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .form-header h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      color: var(--charcoal-soft);
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-divider {
+      width: 50px;
+      height: 2px;
+      background: var(--gold-whisper);
+      margin: 0.8rem auto;
+    }
+
+    .form-header p {
+      font-size: 0.85rem;
+      color: var(--taupe-dust);
+    }
+
+    .auth-form {
+      margin-top: 1rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--taupe-dust);
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group label i {
+      margin-right: 0.5rem;
+      font-size: 0.7rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: white;
+      border: 1px solid var(--fade-grey);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--charcoal-soft);
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    .input-group input:focus {
+      border-color: var(--gold-whisper);
+      box-shadow: 0 0 0 2px rgba(201, 178, 139, 0.2);
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 1.5rem;
+    }
+
+    .forgot-password a {
+      font-size: 0.75rem;
+      color: var(--taupe-dust);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .forgot-password a:hover {
+      color: var(--gold-whisper);
+    }
+
+    .signin-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--charcoal-soft);
+      border: none;
+      color: var(--chalk-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-bottom: 1.5rem;
+    }
+
+    .signin-btn:hover {
+      background: var(--gold-whisper);
+      color: var(--charcoal-soft);
+      transform: translateY(-2px);
+    }
+
+    .signin-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .social-signin {
+      text-align: center;
+    }
+
+    .social-signin p {
+      font-size: 0.75rem;
+      color: var(--taupe-dust);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .social-signin p::before,
+    .social-signin p::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background: var(--fade-grey);
+    }
+
+    .social-signin p::before {
+      left: 0;
+    }
+
+    .social-signin p::after {
+      right: 0;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--fade-grey);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--taupe-dust);
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .social-icon:hover {
+      border-color: var(--gold-whisper);
+      color: var(--charcoal-soft);
+      transform: translateY(-2px);
+    }
+
+    .signup-prompt {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--fade-grey);
+    }
+
+    .signup-prompt p {
+      font-size: 0.85rem;
+      color: var(--taupe-dust);
+    }
+
+    .signup-link {
+      color: var(--charcoal-soft);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .signup-link:hover {
+      color: var(--gold-whisper);
+    }
+
+    .message {
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-align: center;
+      display: none;
+    }
+
+    .message.error {
+      background: rgba(199, 125, 111, 0.1);
+      color: var(--error-red);
+      border: 1px solid var(--error-red);
+      display: block;
+    }
+
+    .message.success {
+      background: rgba(143, 158, 124, 0.1);
+      color: var(--success-green);
+      border: 1px solid var(--success-green);
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .auth-container {
+        flex-direction: column;
+        max-width: 550px;
+        margin: 1rem auto;
+        min-height: auto;
+      }
+      
+      .auth-left {
+        padding: 2rem;
+      }
+      
+      .auth-right {
+        padding: 2rem;
+      }
+      
+      .brand-mark {
+        font-size: 3rem;
+      }
+      
+      .auth-title {
+        font-size: 2rem;
+      }
+      
+      .feature-item {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .auth-container {
+        width: 100%;
+        border-radius: 20px;
+      }
+      
+      .auth-left {
+        padding: 1.5rem;
+      }
+      
+      .auth-right {
+        padding: 1.5rem;
+      }
+      
+      .auth-title {
+        font-size: 1.6rem;
+      }
+      
+      .brand-mark {
+        font-size: 2.5rem;
+      }
+      
+      .form-header h2 {
+        font-size: 1.6rem;
+      }
+      
+      .social-icons {
+        gap: 0.8rem;
+      }
+      
+      .social-icon {
+        width: 38px;
+        height: 38px;
+      }
+      
+      .social-signin p::before,
+      .social-signin p::after {
+        width: 25%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="auth-left-content">
+      <div class="brand-mark">◊</div>
+      <h1 class="auth-title">WELCOME BACK</h1>
+      <div class="auth-divider"></div>
+      <p class="auth-subtitle">Sign in to continue your TMK journey</p>
+      
+      <div class="feature-list">
+        <div class="feature-item">
+          <i class="fas fa-shopping-bag"></i>
+          <span>Access your order history</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-heart"></i>
+          <span>View your saved items</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-tag"></i>
+          <span>Exclusive member discounts</span>
+        </div>
+        <div class="feature-item">
+          <i class="fas fa-clock"></i>
+          <span>Early access to new collections</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="auth-right">
+    <div class="auth-form-container">
+      <div class="form-header">
+        <h2>SIGN IN</h2>
+        <div class="form-divider"></div>
+        <p>Access your TMK Fashion account</p>
+      </div>
+      
+      <div id="messageContainer" class="message"></div>
+      
+      <form id="signinForm" class="auth-form">
+        <div class="input-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i>
+            EMAIL ADDRESS
+          </label>
+          <input type="email" id="email" name="email" placeholder="hello@tmkfashion.com" required>
+        </div>
+        
+        <div class="input-group">
+          <label for="password">
+            <i class="fas fa-lock"></i>
+            PASSWORD
+          </label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        
+        <div class="forgot-password">
+          <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" id="signinBtn" class="signin-btn">SIGN IN</button>
+        
+        <div class="social-signin">
+          <p>Or continue with</p>
+          <div class="social-icons">
+            <a href="#" id="googleSignin" class="social-icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-apple"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </form>
+      
+      <div class="signup-prompt">
+        <p>Don't have an account? <a href="#" id="signupLink" class="signup-link">CREATE ACCOUNT</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJvAldm8oz85fqW0-_p_vN3tBdm2TUh7A",
+    authDomain: "blogs-dd2ff.firebaseapp.com",
+    projectId: "blogs-dd2ff",
+    storageBucket: "blogs-dd2ff.firebasestorage.app",
+    messagingSenderId: "347508262669",
+    appId: "1:347508262669:web:a29edfbd441a7573895244",
+    measurementId: "G-NJY2WN9EGC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  const showMessage = (message, type) => {
+    const msgDiv = document.getElementById('messageContainer');
+    msgDiv.textContent = message;
+    msgDiv.className = `message ${type}`;
+    setTimeout(() => {
+      msgDiv.className = 'message';
+    }, 5000);
+  };
+
+  const handleSignin = async (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    
+    if (!email || !password) {
+      showMessage('Please enter both email and password', 'error');
+      return;
+    }
+    
+    const signinBtn = document.getElementById('signinBtn');
+    signinBtn.disabled = true;
+    signinBtn.textContent = 'SIGNING IN...';
+    
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      showMessage(`Welcome back! Redirecting to your dashboard...`, 'success');
+      
+      setTimeout(() => {
+        window.location.href = './images/index.html';
+      }, 1500);
+      
+    } catch (error) {
+      console.error("Signin error:", error);
+      let errorMessage = '';
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No account found with this email. Please sign up first.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password. Please try again.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address format.';
+          break;
+        case 'auth/user-disabled':
+          errorMessage = 'This account has been disabled. Please contact support.';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many failed attempts. Please try again later.';
+          break;
+        default:
+          errorMessage = 'Sign in failed. Please check your credentials.';
+      }
+      showMessage(errorMessage, 'error');
+    } finally {
+      signinBtn.disabled = false;
+      signinBtn.textContent = 'SIGN IN';
+    }
+  };
+  
+  const handleGoogleSignin = async (e) => {
+    e.preventDefault();
+    
+    const googleBtn = document.querySelector('#googleSignin i');
+    googleBtn.style.opacity = '0.5';
+    
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      
+      showMessage(`Welcome back, ${user.displayName || 'Member'}! Redirecting...`, 'success');
+      
+      setTimeout(() => {
+  window.location.href = './images/index.html';
+}, 
+1500);
+      
+    } catch (error) {
+      console.error("Google signin error:", error);
+      showMessage('Google sign in failed. Please try again.', 'error');
+    } finally {
+      googleBtn.style.opacity = '1';
+    }
+  };
+  
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    
+    if (!email) {
+      showMessage('Please enter your email address to reset your password', 'error');
+      return;
+    }
+    
+    try {
+      await sendPasswordResetEmail(auth, email);
+      showMessage(`Password reset email sent to ${email}. Check your inbox.`, 'success');
+    } catch (error) {
+      console.error("Password reset error:", error);
+      let errorMessage = '';
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No account found with this email address.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address format.';
+          break;
+        default:
+          errorMessage = 'Failed to send reset email. Please try again.';
+      }
+      showMessage(errorMessage, 'error');
+    }
+  };
+  
+  const handleSignupRedirect = (e) => {
+    e.preventDefault();
+    showMessage('Redirecting to sign up page...', 'success');
+    setTimeout(() => {
+      window.location.href = './signup.html';
+    }, 1000);
+  };
+  
+  document.getElementById('signinForm').addEventListener('submit', handleSignin);
+  document.getElementById('googleSignin').addEventListener('click', handleGoogleSignin);
+  document.getElementById('forgotPasswordLink').addEventListener('click', handleForgotPassword);
+  document.getElementById('signupLink').addEventListener('click', handleSignupRedirect);
+  
+  if (window.location.search.includes('registered=true')) {
+    showMessage('Account created successfully! Please sign in.', 'success');
+  }
+</script>
+
+</body>
+</html>
