@@ -969,6 +969,8 @@
     collection,
     getDocs,
     addDoc,
+    deleteDoc,
+    doc,
     query,
     orderBy,
     serverTimestamp
@@ -1215,6 +1217,7 @@
           <h4>${product.name}</h4>
           <div class="product-category">${product.category}</div>
           <div class="product-price-admin">${product.price}</div>
+          ${product.docId ? `<button onclick="deleteProduct('${product.docId}')" style="margin-top:0.75rem;width:100%;padding:0.5rem;background:rgba(188,71,66,0.1);color:#bc4742;border:1px solid #bc4742;border-radius:8px;cursor:pointer;font-size:0.8rem;font-weight:600;letter-spacing:1px;"><i class="fas fa-trash"></i> REMOVE</button>` : ''}
         </div>
       </div>
     `).join('');
@@ -1462,6 +1465,19 @@
     }
   }
   
+  // ========== DELETE PRODUCT ==========
+  window.deleteProduct = async function(docId) {
+    if (!confirm('Are you sure you want to remove this product?')) return;
+    try {
+      await deleteDoc(doc(db, 'products', docId));
+      await fetchProductsFromFirestore();
+      displayProducts('all');
+      updateStats();
+    } catch (error) {
+      alert('Failed to delete product: ' + error.message);
+    }
+  };
+
   // ========== PROFILE PICTURE ==========
   function initProfilePicture() {
     const savedAvatar = localStorage.getItem('tmk_admin_avatar');
