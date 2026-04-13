@@ -418,11 +418,10 @@
             if (cart.items.length === 0) {
                 showToast("Your cart is empty", "error");
                 setTimeout(() => {
-                    window.location.href = "./collections.html";
+                    window.location.href = document.referrer || "./collections.html";
                 }, 2000);
                 return;
             }
-
             cartData = cart;
             displayCartItems(cart);
             calculateTotals(cart);

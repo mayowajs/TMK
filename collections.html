@@ -1089,7 +1089,15 @@
       }
 
       showToast("Proceeding to checkout...");
-      setTimeout(() => {
+      setTimeout(async () => {
+        try {
+          const cartRef = doc(db, "carts", currentUser.uid);
+          const cartSnap = await getDoc(cartRef);
+          const items = cartSnap.exists() ? (cartSnap.data().items || []) : cartState.items;
+          localStorage.setItem('tmk_cart', JSON.stringify({ items }));
+        } catch (e) {
+          localStorage.setItem('tmk_cart', JSON.stringify({ items: cartState.items }));
+        }
         window.location.href = "checkout.html";
       }, 1000);
     });
