@@ -1000,6 +1000,7 @@
     const errorEl = document.getElementById('loginError');
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      sessionStorage.setItem('tmk_admin_logged_in', '1');
       document.getElementById('loginScreen').style.display = 'none';
       initializeDashboard();
     } else {
@@ -1010,6 +1011,12 @@
   document.getElementById('loginPassword').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') document.getElementById('loginSubmitBtn').click();
   });
+
+  // Auto-login if already logged in this session
+  if (sessionStorage.getItem('tmk_admin_logged_in') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
+    initializeDashboard();
+  }
 
   // ========== DATA ==========
   
@@ -1393,15 +1400,15 @@
   
   document.getElementById('logoutBtn').addEventListener('click', () => {
     if (confirm('Are you sure you want to logout?')) {
-      alert('Logged out successfully!');
+      sessionStorage.removeItem('tmk_admin_logged_in');
+      window.location.reload();
     }
   });
 
   // ========== FETCH USERS FROM FIRESTORE ==========
   async function fetchUsersFromFirestore() {
     try {
-      const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
-      const snapshot = await getDocs(q);
+      const snapshot = await getDocs(collection(db, "users"));
       
       registeredUsers = [];
       snapshot.forEach((doc, index) => {
@@ -1421,9 +1428,8 @@
       return true;
     } catch (error) {
       console.error("❌ Error fetching users:", error.message);
-      console.error("Error code:", error.code);
-      alert(`Failed to load users: ${error.message}`);
-      return false;
+      registeredUsers = [];
+      return true;
     }
   }
   
