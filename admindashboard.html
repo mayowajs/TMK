@@ -1015,7 +1015,8 @@
   // Auto-login if already logged in this session
   if (sessionStorage.getItem('tmk_admin_logged_in') === '1') {
     document.getElementById('loginScreen').style.display = 'none';
-    initializeDashboard();
+    // Wait for DOM to be ready before initializing
+    window.addEventListener('load', () => initializeDashboard());
   }
 
   // ========== DATA ==========
@@ -1236,46 +1237,40 @@
     const collections = [
       {
         name: "MEN'S COLLECTION",
-        count: products.filter(p => p.collection === 'mens').length,
-        icon: "fa-tshirt",
+        key: "mens",
         sampleImage: products.find(p => p.collection === 'mens')?.image || "https://img.kwcdn.com/product/fmket/be05208c21c9d78f4b3da7c7b02c80f7.jpg?imageView2/2/w/800/q/70/format/avif"
       },
       {
         name: "WOMEN'S COLLECTION",
-        count: products.filter(p => p.collection === 'womens').length,
-        icon: "fa-female",
+        key: "womens",
         sampleImage: products.find(p => p.collection === 'womens')?.image || "https://img.kwcdn.com/product/fancy/60759047-ed1a-402f-a793-b2f23c18887f.jpg?imageView2/2/w/800/q/70/format/avif"
       },
       {
         name: "ACCESSORIES",
-        count: products.filter(p => p.collection === 'accessories').length,
-        icon: "fa-gem",
+        key: "accessories",
         sampleImage: products.find(p => p.collection === 'accessories')?.image || "https://img.kwcdn.com/product/fancy/a8eb954e-2084-45eb-92eb-c781f94b6a1e.jpg?imageView2/2/w/800/q/70/format/avif"
       },
       {
         name: "WRIST WATCHES",
-        count: products.filter(p => p.collection === 'watches').length,
-        icon: "fa-clock",
+        key: "watches",
         sampleImage: products.find(p => p.collection === 'watches')?.image || "https://img.kwcdn.com/product/fancy/efbdf737-1abc-4c54-84ef-0e34e372d314.jpg?imageView2/2/w/800/q/70/format/avif"
       }
     ];
 
     const grid = document.getElementById('collectionsGrid');
-    const collectionName = col => col.name.toLowerCase().replaceAll("'s", "").trim();
 
     grid.innerHTML = collections.map(col => `
-      <div class="product-card-admin" style="cursor:pointer" data-collection="${collectionName(col)}">
+      <div class="product-card-admin" style="cursor:pointer" data-collection="${col.key}">
         <div class="product-image-admin">
           <img src="${col.sampleImage}" alt="${col.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
         </div>
         <div class="product-info-admin">
           <h4>${col.name}</h4>
-          <div class="product-category">${col.count} Products</div>
+          <div class="product-category">${products.filter(p => p.collection === col.key).length} Products</div>
         </div>
       </div>
     `).join('');
 
-    // Add event listeners to collection cards
     document.querySelectorAll('.product-card-admin').forEach(card => {
       card.addEventListener('click', () => {
         filterProductsByCollection(card.dataset.collection);
@@ -1438,34 +1433,28 @@
       const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
       const snapshot = await getDocs(q);
       
-      // Check if products collection has data
-      if (snapshot.empty) {
-        console.warn("⚠️ No products in Firestore, using fallback products");
-        products = fallbackProducts;
-        return true;
-      }
-      
-      products = [];
+      const firestoreProducts = [];
       snapshot.forEach((doc, index) => {
         const productData = doc.data();
-        products.push({
+        firestoreProducts.push({
           id: index + 1,
           docId: doc.id,
           name: productData.name || "Unknown Product",
           collection: productData.collection || "accessories",
           price: productData.price ? `$${productData.price}` : "$0",
           category: productData.category || "General",
-          image: productData.image || "product",
+          image: productData.image || "",
           description: productData.description || "",
           inStock: productData.inStock !== false
         });
       });
-      
-      console.log("✅ Loaded products from Firestore:", products.length);
+
+      // Always combine fallback + Firestore products
+      products = [...fallbackProducts, ...firestoreProducts];
+      console.log("✅ Total products:", products.length);
       return true;
     } catch (error) {
       console.error("❌ Error fetching products:", error.message);
-      console.warn("⚠️ Using fallback products from collections");
       products = fallbackProducts;
       return true;
     }
@@ -1559,27 +1548,18 @@
   // Initialize Dashboard
   async function initializeDashboard() {
     initProfilePicture();
-    const usersLoaded = await fetchUsersFromFirestore();
-    const productsLoaded = await fetchProductsFromFirestore();
-    const ordersLoaded = await fetchOrdersFromFirestore();
-    
-    if (usersLoaded && productsLoaded && ordersLoaded) {
-      updateStats();
-      // Orders are already displayed by fetchOrdersFromFirestore
-      displayCustomers();
-      displayProducts('all');
-      displayCollections();
-      updateNotificationBadges();
-    } else if (usersLoaded) {
-      // Users loaded but products might be empty
-      updateStats();
-      displayRecentOrders();
-      displayAllOrders();
-      displayCustomers();
-      displayProducts('all');
-      displayCollections();
-      updateNotificationBadges();
-    }
+    // Load all data in parallel
+    await Promise.allSettled([
+      fetchUsersFromFirestore(),
+      fetchProductsFromFirestore(),
+      fetchOrdersFromFirestore()
+    ]);
+    // Always display everything regardless of what failed
+    updateStats();
+    displayCustomers();
+    displayProducts('all');
+    displayCollections();
+    updateNotificationBadges();
   }
   
   // Dashboard is initialized after login
