@@ -22,7 +22,6 @@
     <a href="#collections">COLLECTIONS</a>
     <a href="#">EDITORIAL</a>
     <a href="#">MAISON</a>
-    <!-- ADDED: Cart Icon with Counter -->
     <div class="cart-icon-container">
       <button class="cart-nav-btn" id="cartIcon">
         <i class="fas fa-shopping-bag"></i>
@@ -30,7 +29,88 @@
       </button>
     </div>
   </nav>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <button class="cart-nav-btn" id="cartIconMobile" style="display:none;position:relative;">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-count" id="cartCountMobile" style="position:absolute;top:-8px;right:-8px;background:#c9b28b;color:#1e1c1a;font-size:0.65rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">ATELIER</a>
+  <a href="#collections">RUNWAY</a>
+  <a href="#collections">COLLECTIONS</a>
+  <a href="#">EDITORIAL</a>
+  <a href="#">MAISON</a>
+  <a href="./signinn.html">SIGN IN</a>
+</div>
+
+<style>
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #1e1c1a;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(247,245,240,0.98);
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    padding: 1rem 2rem 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(30,28,26,0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #1e1c1a;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(30,28,26,0.06);
+  }
+  @media (max-width: 768px) {
+    .nav-right { display: none !important; }
+    .hamburger { display: flex; }
+    #cartIconMobile { display: flex !important; }
+  }
+</style>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  document.getElementById('cartIconMobile').addEventListener('click', () => {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  });
+</script>
 
 <!-- ADDED: Cart Sidebar -->
 <div id="cartOverlay" class="cart-overlay"></div>
