@@ -1588,7 +1588,7 @@
         }
 
         showToast(`${product.name} added to cart!`);
-        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
+        updateCartUI({ items });
       } catch (error) {
         addToLocalCart(product);
         showToast(`${product.name} added locally`);
@@ -1835,8 +1835,7 @@
           items,
           lastUpdated: new Date().toISOString()
         });
-
-        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
+        updateCartUI({ items });
       } catch (error) {
 
       }
@@ -1861,11 +1860,12 @@
         if (!snap.exists()) return;
 
         const items = snap.data().items || [];
+        const updatedItems = items.filter((item) => item.productId !== productId);
         await updateDoc(cartRef, {
-          items: items.filter((item) => item.productId !== productId),
+          items: updatedItems,
           lastUpdated: new Date().toISOString()
         });
-        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
+        updateCartUI({ items: updatedItems });
       } catch (error) {
         // ignore error
       }
@@ -1966,7 +1966,7 @@
         attachCartGlobals();
         document.getElementById('searchInput').addEventListener('input', handleSearch);
       }
-      if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
+      await loadCart();
     });
   </script>
 </body>
