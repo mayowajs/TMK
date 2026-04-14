@@ -1629,8 +1629,8 @@
           items: [],
           lastUpdated: new Date().toISOString()
         });
+        updateCartUI({ items: [] });
         showToast("Cart cleared");
-        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
       } catch (error) {
         localStorage.removeItem('tmk_cart');
         updateCartUI({ items: [] });
@@ -1748,6 +1748,8 @@
       );
 
       document.getElementById('cartCount').innerText = totalItems;
+      const mobileCount = document.getElementById('cartCountMobile');
+      if (mobileCount) mobileCount.innerText = totalItems;
       const container = document.getElementById('cartItems');
       const footer = document.getElementById('cartFooter');
 

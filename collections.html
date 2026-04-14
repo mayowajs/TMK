@@ -772,7 +772,6 @@
     }
   }
   
-  // Clear cart function
   async function clearCart() {
     if (!currentUser) {
       localStorage.removeItem('tmk_cart');
@@ -787,8 +786,8 @@
         items: [],
         lastUpdated: new Date().toISOString()
       });
+      updateCartUI({ items: [] });
       showToast("Cart cleared");
-      if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
     } catch (error) {
       console.error("Error clearing cart:", error);
       localStorage.removeItem('tmk_cart');
@@ -1072,6 +1071,8 @@
     const totalPrice = items.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 1)), 0);
     
     cartCount.textContent = totalItems;
+    const mobileCount = document.getElementById('cartCountMobile');
+    if (mobileCount) mobileCount.textContent = totalItems;
     
     if (items.length === 0) {
       cartItemsContainer.innerHTML = '<div class="empty-cart">Your bag is empty</div>';
