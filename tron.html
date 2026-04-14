@@ -1896,8 +1896,19 @@
       });
     }
 
-    let initialized=false;let cartLoaded=false;onAuthStateChanged(auth,async(user)=>{currentUser=user;updateAuthUI(user);if(!initialized){initialized=true;renderOriginalCollection();attachCartGlobals();document.getElementById('searchInput').addEventListener('input',handleSearch);}if(!cartLoaded){cartLoaded=true;await loadCart();}});`n  </script>
+    let initialized = false;
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      updateAuthUI(user);
+      if (!initialized) {
+        initialized = true;
+        renderOriginalCollection();
+        attachCartGlobals();
+        document.getElementById('searchInput').addEventListener('input', handleSearch);
+      }
+      await loadCart();
+    });
+  </script>
 </body>
 
 </html>
-
