@@ -1187,20 +1187,7 @@
   addUserStatusIndicator();
   
   // Auth state listener
-  onAuthStateChanged(auth, async (user) => {
-    console.log("Auth state changed. User:", user ? user.email : "No user");
-    currentUser = user;
-    updateUserStatus();
-    await loadCart();
-  });
-  
- 
-  if (auth.currentUser) {
-    currentUser = auth.currentUser;
-    updateUserStatus();
-    loadCart();
-  }
-</script>
+  let cartLoaded=false;onAuthStateChanged(auth,async(user)=>{currentUser=user;updateUserStatus();if(!cartLoaded){cartLoaded=true;await loadCart();}});`n</script>
 
 </body>
 </html>
