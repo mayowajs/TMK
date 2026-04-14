@@ -1896,12 +1896,16 @@
       });
     }
 
+    let initialized = false;
     onAuthStateChanged(auth, async (user) => {
       currentUser = user;
       updateAuthUI(user);
-      renderOriginalCollection();
-      attachCartGlobals();
-      document.getElementById('searchInput').addEventListener('input', handleSearch);
+      if (!initialized) {
+        initialized = true;
+        renderOriginalCollection();
+        attachCartGlobals();
+        document.getElementById('searchInput').addEventListener('input', handleSearch);
+      }
       await loadCart();
     });
   </script>

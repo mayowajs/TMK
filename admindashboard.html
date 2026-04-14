@@ -45,6 +45,7 @@
       align-items: center;
       justify-content: center;
       z-index: 9999;
+      padding: 1rem;
     }
 
     .login-box {
@@ -1019,6 +1020,9 @@
     document.querySelector('.sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.remove('open');
   });
+  // Hide toggle until logged in
+  document.getElementById('sidebarToggle').style.display = 'none';
+  document.getElementById('sidebarOverlay').style.display = 'none';
 
   // ========== ADMIN LOGIN ==========
   const ADMIN_USERNAME = 'taiwo mayowa krash';
@@ -1032,6 +1036,8 @@
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       sessionStorage.setItem('tmk_admin_logged_in', '1');
       document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('sidebarToggle').style.display = '';
+      document.getElementById('sidebarOverlay').style.display = '';
       initializeDashboard();
     } else {
       errorEl.style.display = 'block';
@@ -1045,7 +1051,8 @@
   // Auto-login if already logged in this session
   if (sessionStorage.getItem('tmk_admin_logged_in') === '1') {
     document.getElementById('loginScreen').style.display = 'none';
-    // Wait for DOM to be ready before initializing
+    document.getElementById('sidebarToggle').style.display = '';
+    document.getElementById('sidebarOverlay').style.display = '';
     window.addEventListener('load', () => initializeDashboard());
   }
 
