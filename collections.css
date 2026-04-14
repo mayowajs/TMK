@@ -910,10 +910,31 @@ h1, h2, h3, .nav-left span, .hero-tagline, .btn-primary, .btn-outline, .footer-t
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: 0.3s;
+  margin-bottom: 0.5rem;
 }
 
 .checkout-btn:hover {
   background: var(--taupe-dust);
+}
+
+.clear-cart-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: transparent;
+  color: #c77d6f;
+  border: 1px solid #c77d6f;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.3s;
+  margin-bottom: 0.5rem;
+}
+
+.clear-cart-btn:hover {
+  background: #c77d6f;
+  color: white;
 }
 
 /* Toast Notification */

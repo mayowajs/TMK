@@ -127,6 +127,7 @@
       <span>Total</span>
       <span id="cartTotal">$0</span>
     </div>
+    <button id="clearCartBtn" class="clear-cart-btn">CLEAR CART</button>
     <button id="checkoutBtn" class="checkout-btn">CHECKOUT</button>
   </div>
 </div>
@@ -771,6 +772,31 @@
     }
   }
   
+  // Clear cart function
+  async function clearCart() {
+    if (!currentUser) {
+      localStorage.removeItem('tmk_cart');
+      updateCartUI({ items: [] });
+      showToast("Cart cleared");
+      return;
+    }
+    
+    try {
+      const cartRef = doc(db, "carts", currentUser.uid);
+      await updateDoc(cartRef, {
+        items: [],
+        lastUpdated: new Date().toISOString()
+      });
+      showToast("Cart cleared");
+      if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      localStorage.removeItem('tmk_cart');
+      updateCartUI({ items: [] });
+      showToast("Cart cleared");
+    }
+  }
+  
   // LocalStorage backup functions
   function getLocalCart() {
     const cart = localStorage.getItem('tmk_cart');
@@ -1180,6 +1206,20 @@
         }
         window.location.href = "checkout.html";
       }, 1000);
+    });
+  }
+  
+  const clearCartBtn = document.getElementById('clearCartBtn');
+  if (clearCartBtn) {
+    clearCartBtn.addEventListener('click', async () => {
+      if (cartState.items.length === 0) {
+        showToast("Cart is already empty", "info");
+        return;
+      }
+      
+      if (confirm("Are you sure you want to clear your cart?")) {
+        await clearCart();
+      }
     });
   }
   
