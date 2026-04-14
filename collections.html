@@ -900,7 +900,7 @@
       }
       
       showToast(`${product.name} added to cart!`);
-      await loadCart();
+      if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
       return true;
     } catch (error) {
       console.error("Firebase error details:", error);
@@ -994,7 +994,7 @@
             lastUpdated: new Date().toISOString()
           });
           
-          await loadCart();
+          if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
         }
       }
     } catch (error) {
@@ -1025,7 +1025,7 @@
           lastUpdated: new Date().toISOString()
         });
         
-        await loadCart();
+        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
         showToast("Item removed from cart");
       }
     } catch (error) {
@@ -1191,16 +1191,10 @@
     console.log("Auth state changed. User:", user ? user.email : "No user");
     currentUser = user;
     updateUserStatus();
-    await loadCart();
+    if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
   });
-  
- 
-  if (auth.currentUser) {
-    currentUser = auth.currentUser;
-    updateUserStatus();
-    loadCart();
-  }
 </script>
 
 </body>
 </html>
+

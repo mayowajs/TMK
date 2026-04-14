@@ -1566,7 +1566,7 @@
         }
 
         showToast(`${product.name} added to cart!`);
-        await loadCart();
+        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
       } catch (error) {
         addToLocalCart(product);
         showToast(`${product.name} added locally`);
@@ -1789,7 +1789,7 @@
           lastUpdated: new Date().toISOString()
         });
 
-        await loadCart();
+        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
       } catch (error) {
 
       }
@@ -1818,7 +1818,7 @@
           items: items.filter((item) => item.productId !== productId),
           lastUpdated: new Date().toISOString()
         });
-        await loadCart();
+        if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
       } catch (error) {
         // ignore error
       }
@@ -1906,9 +1906,10 @@
         attachCartGlobals();
         document.getElementById('searchInput').addEventListener('input', handleSearch);
       }
-      await loadCart();
+      if(!window.tmkCartLoaded){window.tmkCartLoaded=true;await loadCart();}
     });
   </script>
 </body>
 
 </html>
+
