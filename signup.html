@@ -6,6 +6,7 @@
   <title>TMK Fashion — Sign Up | Join the TMK Community</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       margin: 0;
@@ -1025,11 +1026,18 @@ const handleSignup = async (e) => {
     }
 
     
-    showMessage("Account created successfully! Redirecting...", "success");
-
-    setTimeout(() => {
-      window.location.href = "./images/index.html";
-    }, 1000);
+    await Swal.fire({
+      icon: 'success',
+      title: `Welcome to TMK, ${firstName}! 🎉`,
+      text: 'Your account has been created. Redirecting...',
+      timer: 2000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      background: '#fefaf5',
+      color: '#1e1c1a',
+      iconColor: '#c9b28b'
+    });
+    window.location.href = "./images/index.html";
 
   } catch (error) {
     console.error(error);
@@ -1071,11 +1079,18 @@ const handleGoogleSignup = async (e) => {
       updatedAt: serverTimestamp()
     });
 
-    showMessage("Google signup successful!", "success");
-
-    setTimeout(() => {
-      window.location.href = "./images/index.html";
-    }, 1000);
+    await Swal.fire({
+      icon: 'success',
+      title: `Welcome to TMK! 🎉`,
+      text: 'Google signup successful. Redirecting...',
+      timer: 2000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      background: '#fefaf5',
+      color: '#1e1c1a',
+      iconColor: '#c9b28b'
+    });
+    window.location.href = "./images/index.html";
 
   } catch (error) {
     console.error(error);
