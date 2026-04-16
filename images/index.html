@@ -21,8 +21,8 @@
     <a href="../collections.html">COLLECTIONS</a>
     <a href="#">EDITORIAL</a>
     <a href="#">MAISON</a>
-    <a href="../signinn.html" style="border:1px solid #1e1c1a; padding:0.4rem 1rem; border-radius:999px;">SIGN IN</a>
-    <a href="../signup.html" style="background:#1e1c1a; color:white; padding:0.4rem 1rem; border-radius:999px;">SIGN UP</a>
+    <a href="../signinn.html" id="navSignIn" style="border:1px solid #1e1c1a; padding:0.4rem 1rem; border-radius:999px;">SIGN IN</a>
+    <a href="../signup.html" id="navSignUp" style="background:#1e1c1a; color:white; padding:0.4rem 1rem; border-radius:999px;">SIGN UP</a>
   </nav>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -35,8 +35,8 @@
   <a href="../collections.html">COLLECTIONS</a>
   <a href="#">EDITORIAL</a>
   <a href="#">MAISON</a>
-  <a href="../signinn.html">SIGN IN</a>
-  <a href="../signup.html">SIGN UP</a>
+  <a href="../signinn.html" id="mobileSignIn">SIGN IN</a>
+  <a href="../signup.html" id="mobileSignUp">SIGN UP</a>
 </div>
 
 <style>
@@ -91,10 +91,53 @@
   }
 </style>
 
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  const app = initializeApp({
+    apiKey: "AIzaSyDJvAldm8oz85fqW0-_p_vN3tBdm2TUh7A",
+    authDomain: "blogs-dd2ff.firebaseapp.com",
+    projectId: "blogs-dd2ff",
+    storageBucket: "blogs-dd2ff.firebasestorage.app",
+    messagingSenderId: "347508262669",
+    appId: "1:347508262669:web:a29edfbd441a7573895244"
+  });
+
+  const auth = getAuth(app);
+
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('hamburger').classList.toggle('open');
     document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    const navSignIn = document.getElementById('navSignIn');
+    const navSignUp = document.getElementById('navSignUp');
+    const mobileSignIn = document.getElementById('mobileSignIn');
+    const mobileSignUp = document.getElementById('mobileSignUp');
+
+    if (user) {
+      // Logged in — show Log Out, hide Sign Up
+      navSignIn.textContent = 'LOG OUT';
+      navSignIn.href = '#';
+      navSignIn.addEventListener('click', (e) => { e.preventDefault(); signOut(auth).then(() => window.location.reload()); });
+      navSignUp.style.display = 'none';
+
+      mobileSignIn.textContent = 'LOG OUT';
+      mobileSignIn.href = '#';
+      mobileSignIn.addEventListener('click', (e) => { e.preventDefault(); signOut(auth).then(() => window.location.reload()); });
+      mobileSignUp.style.display = 'none';
+    } else {
+      // Logged out — restore defaults
+      navSignIn.textContent = 'SIGN IN';
+      navSignIn.href = '../signinn.html';
+      navSignUp.style.display = '';
+
+      mobileSignIn.textContent = 'SIGN IN';
+      mobileSignIn.href = '../signinn.html';
+      mobileSignUp.style.display = '';
+    }
   });
 </script>
 
@@ -104,7 +147,7 @@
       <div class="hero-tagline">EST. 2025 · PARIS TOKYO</div>
       <h1 class="hero-title">
         <span class="title-line">SILHOUETTE</span>
-        <span class="title-line accent">AS IDENTITY</span>
+        <span class 3S="title-line accent">AS IDENTITY</span>
       </h1>
       <p class="hero-description">
         Where minimalism meets raw elegance. TMK Fashion redefines modern tailoring, 
